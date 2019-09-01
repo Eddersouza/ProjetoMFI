@@ -20,7 +20,7 @@ const AreaDialogCreateUser = () => {
             Ou
                             <ul className="list-unstyled" style={{ lineHeight: '2' }}>
                 <li><FontAwesomeIcon className="text-success" icon="check" />Mostre seus serviços</li>
-                <li><FontAwesomeIcon className="text-success" icon="check" />Mostre suas promoções</li>
+                {/* <li><FontAwesomeIcon className="text-success" icon="check" />Mostre suas promoções</li> */}
             </ul>
             <p><Button className="btn btn-info btn-block">Sim quero me registrar</Button></p>
         </>
