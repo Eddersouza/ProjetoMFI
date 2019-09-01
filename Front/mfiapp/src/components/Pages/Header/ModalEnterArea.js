@@ -1,8 +1,21 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col, Form, FormGroup, Label, Input, } from 'reactstrap';
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    Row, Col,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+} from 'reactstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const ModalEnterArea = (props) => {
     return (
-        <Modal isOpen={props.modalOpen} toggle={props.toggle} className='primary' backdrop='static'  style={{ maxWidth: '70%' }}>
+        <Modal isOpen={props.modalOpen} toggle={props.toggle} className='primary' backdrop='static' style={{ maxWidth: '70%' }}>
             <ModalHeader toggle={props.toggle}>O que voce deseja?</ModalHeader>
             <ModalBody>
                 <Row>
@@ -30,22 +43,22 @@ const ModalEnterArea = (props) => {
                     <Col md={6} sm={12}>
                         <p className="lead">Registrar no sistema </p>
                         <ul className="list-unstyled" style={{ lineHeight: '2' }}>
-                            <li><span className="fa fa-check text-success"></span> Faça Orcamentos</li>
-                            <li><span className="fa fa-check text-success"></span> Escolha seus fornecedores favoritos
+                            <li><FontAwesomeIcon className="text-success" icon="check" /> Faça Orcamentos</li>
+                            {/* <li><FontAwesomeIcon className="text-success" icon="check" />Escolha seus fornecedores favoritos
                                 </li>
-                            <li><span className="fa fa-check text-success"></span> Avalie os fornecedores cadastrados
-                                </li>
+                            <li><FontAwesomeIcon className="text-success" icon="check" />Avalie os fornecedores cadastrados
+                                </li> */}
                         </ul>
                         Ou
-                            <ul className="list-unstyled"  style={{ lineHeight: '2' }}>
-                            <li><span className="fa fa-check text-success"></span> Mostre seus serviços</li>
-                            <li><span className="fa fa-check text-success"></span> Mostre suas promoções</li>
+                            <ul className="list-unstyled" style={{ lineHeight: '2' }}>
+                            <li><FontAwesomeIcon className="text-success" icon="check" />Mostre seus serviços</li>
+                            <li><FontAwesomeIcon className="text-success" icon="check" />Mostre suas promoções</li>
                         </ul>
                         <p><button className="btn btn-info btn-block">Sim quero me
                                     registrar</button></p>
                     </Col>
                 </Row>
-            </ModalBody>         
+            </ModalBody>
         </Modal>
     );
 }
