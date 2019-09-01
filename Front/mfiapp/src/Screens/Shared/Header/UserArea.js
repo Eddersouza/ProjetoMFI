@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Button } from 'reactstrap'
-import ModalEnterArea from "./ModalEnterArea";
+import DialogUserCreateOrEnter from "../Dialog/User/CreateOrEnter/Modal";
 
-const EnterArea = () => {
+const HeaderUserArea = () => {
     const [modalOpen, setmodalOpen] = useState(false)
     return (
         <>
             <Button color="secondary" onClick={() => setmodalOpen(!modalOpen)}>Entrar</Button>
-            <ModalEnterArea modalOpen={modalOpen} toggle={() => setmodalOpen(!modalOpen)} />
+            <DialogUserCreateOrEnter modalOpen={modalOpen} toggle={() => setmodalOpen(!modalOpen)} />
         </>
     );
 }
 
-export default EnterArea;
+export default HeaderUserArea;

@@ -7,7 +7,7 @@ import {
     Nav,
     NavItem
 } from 'reactstrap'
-import EnterArea from "./EnterArea";
+import HeaderUserArea from "./UserArea";
 
 const NavBarTop = () => {
     const [navbarOpen, toggleNavbar] = useState(false)
@@ -18,7 +18,7 @@ const NavBarTop = () => {
             <Collapse isOpen={navbarOpen} navbar>
                 <Nav className="ml-auto" navbar >
                     <NavItem>
-                       <EnterArea />
+                       <HeaderUserArea />
                     </NavItem>
                 </Nav>
             </Collapse>

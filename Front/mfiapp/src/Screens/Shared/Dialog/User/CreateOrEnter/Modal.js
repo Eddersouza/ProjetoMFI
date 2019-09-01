@@ -13,7 +13,7 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const ModalEnterArea = (props) => {
+const DialogUserCreateOrEnter = (props) => {
     return (
         <Modal isOpen={props.modalOpen} toggle={props.toggle} className='primary' backdrop='static' style={{ maxWidth: '70%' }}>
             <ModalHeader toggle={props.toggle}>O que voce deseja?</ModalHeader>
@@ -63,4 +63,4 @@ const ModalEnterArea = (props) => {
     );
 }
 
-export default ModalEnterArea;
+export default DialogUserCreateOrEnter;
