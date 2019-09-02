@@ -41,7 +41,7 @@ const UserTypeChooseRequester = (props) => {
                         <Button type="button" outline color="secondary" onClick={goToNewCreateRequesterUser} size="lg" block>
                             <FontAwesomeIcon className="text-secondary" icon={["far", "hand-point-right"]} />&nbsp;
                               Entre aqui
-              </Button>
+                        </Button>
                     </Col>
                 </Row>
             </CardBody>

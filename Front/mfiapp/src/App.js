@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { Container } from 'reactstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faCheck, faEraser, faReply, faSave } from '@fortawesome/free-solid-svg-icons'
 import { faHandPointRight } from '@fortawesome/free-regular-svg-icons'
 
 import DialogsContextProvider from './Contexts/Dialogs'
@@ -14,7 +14,7 @@ import PageNotFound from './Screens/Error/NotFound';
 import UserTypeChoose from './Screens/User/Type/Choose'
 import UserRequesterCreatePage from './Screens/User/Requester/Create';
 
-library.add(faCheck, faHandPointRight)
+library.add(faBan, faCheck, faEraser, faHandPointRight, faReply, faSave)
 
 function App() {
   return (
