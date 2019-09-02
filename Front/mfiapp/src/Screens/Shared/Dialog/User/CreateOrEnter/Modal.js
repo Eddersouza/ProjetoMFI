@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import {
     Modal,
     ModalHeader,
@@ -9,11 +10,14 @@ import {
 
 import AreaDialogCreateUser from './CreateUser';
 import AreaDialogEnterSystem from './EnterSystem';
+import { DialogsContext } from '../../../../../Contexts/Dialogs';
 
-const DialogUserCreateOrEnter = (props) => {
+const DialogUserCreateOrEnter = () => {
+    const { dialogEnterOrCreateOpen, toggleDialogEnterOrCreate } = useContext(DialogsContext)
     return (
-        <Modal isOpen={props.modalOpen} toggle={props.toggle} className='primary' backdrop='static' style={{ maxWidth: '70%' }}>
-            <ModalHeader toggle={props.toggle}>O que voce deseja?</ModalHeader>
+        <Modal backdrop='static' className='primary' isOpen={dialogEnterOrCreateOpen}
+            toggle={toggleDialogEnterOrCreate} style={{ maxWidth: '70%' }}>
+            <ModalHeader toggle={toggleDialogEnterOrCreate}>O que voce deseja?</ModalHeader>
             <ModalBody>
                 <Row>
                     <Col md={6} sm={12}>
