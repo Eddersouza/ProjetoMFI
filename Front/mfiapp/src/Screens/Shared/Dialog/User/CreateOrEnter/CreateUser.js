@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import {
     Button
 } from 'reactstrap'
+
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DialogsContext } from '../../../../../Contexts/Dialogs';
@@ -11,8 +12,8 @@ const AreaDialogCreateUser = (props) => {
     const { toggleDialogEnterOrCreate } = useContext(DialogsContext)
 
     const goToChooseTypePage = () => {
-        let path = `/Usuario/Escoher`;
-        props.history.push(path);
+        let path = `/usuario/escolher`
+        props.history.push(path)
         toggleDialogEnterOrCreate()
     }
 

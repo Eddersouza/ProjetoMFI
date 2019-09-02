@@ -12,6 +12,7 @@ import HomePage from './Screens/Home/Page'
 import NavBarTop from './Screens/Shared/Header/NavbarTop'
 import PageNotFound from './Screens/Error/NotFound';
 import UserTypeChoose from './Screens/User/Type/Choose'
+import UserRequesterCreatePage from './Screens/User/Requester/Create';
 
 library.add(faCheck, faHandPointRight)
 
@@ -24,7 +25,8 @@ function App() {
           <Container>
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route path="/Usuario/Escoher" component={UserTypeChoose} />
+              <Route path="/usuario/escolher" component={UserTypeChoose} />
+              <Route path="/usuario/cliente/novo" component={UserRequesterCreatePage} />
               <Route component={PageNotFound} />
             </Switch>
           </Container>

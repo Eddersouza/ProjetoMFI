@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {
     Card,
     CardBody,
@@ -6,9 +7,17 @@ import {
     Col,
     Button
 } from 'reactstrap'
+import { withRouter } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const UserTypeChooseRequester = () => {
+const UserTypeChooseRequester = (props) => {
+
+    const goToNewCreateRequesterUser = () => {
+        let path = `/usuario/cliente/novo`
+        props.history.push(path)
+    }
+
     return (
         <Card>
             <CardBody>
@@ -29,7 +38,7 @@ const UserTypeChooseRequester = () => {
                 </Row>
                 <Row>
                     <Col className="text-center" md={12}>
-                        <Button type="button" outline color="secondary" size="lg" block>
+                        <Button type="button" outline color="secondary" onClick={goToNewCreateRequesterUser} size="lg" block>
                             <FontAwesomeIcon className="text-secondary" icon={["far", "hand-point-right"]} />&nbsp;
                               Entre aqui
               </Button>
@@ -40,4 +49,4 @@ const UserTypeChooseRequester = () => {
     );
 }
 
-export default UserTypeChooseRequester;
+export default withRouter(UserTypeChooseRequester)
