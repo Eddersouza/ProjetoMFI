@@ -16,11 +16,13 @@ namespace MFI.WebApi
             GlobalConfiguration.Configuration
                 .EnableSwagger(c =>
                     {
-                        c.SingleApiVersion("v1", "Quero Fazer festa");
+                        c.SingleApiVersion("v1", "Quero Fazer festa")
+                        .Description("Api to administrate site from fest create");
 
                         c.PrettyPrint();
                         c.IncludeXmlComments(GetXmlCommentsPath());
                         c.IgnoreObsoleteProperties();
+                        //c.IgnoreObsoleteActions();
                         c.DescribeAllEnumsAsStrings();
                     })
                 .EnableSwaggerUi(c =>
