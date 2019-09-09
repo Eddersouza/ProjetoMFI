@@ -2,3 +2,5 @@
 /Back/packages
 /Back/App/MFI.WebApi/bin
 /Back/App/MFI.WebApi/obj
+/Back/App/MFI.Domain/bin
+/Back/App/MFI.Domain/obj

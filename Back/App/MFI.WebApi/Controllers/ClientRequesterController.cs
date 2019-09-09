@@ -40,7 +40,7 @@ namespace MFI.WebApi.Controllers
                         Name = view.Name
                     });
             }
-            catch (Exception exception)
+            catch
             {
                 return InternalServerError();
             }
