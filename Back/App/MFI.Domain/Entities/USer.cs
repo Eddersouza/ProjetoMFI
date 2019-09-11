@@ -20,7 +20,7 @@ namespace MFI.Domain.Entities
             string email,
             string password) : this()
         {
-            this.UserId = new Guid();
+            this.UserId = Guid.NewGuid();
             this.Email = email;
             this.Password = password;
 

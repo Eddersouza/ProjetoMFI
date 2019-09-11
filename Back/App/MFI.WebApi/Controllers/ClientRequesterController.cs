@@ -1,4 +1,6 @@
-﻿using MFI.WebApi.Utils.ActionResults;
+﻿using MFI.Application.Interfaces;
+using MFI.Domain.Entities;
+using MFI.WebApi.Utils.ActionResults;
 using MFI.WebApi.ViewModels.Clients.Requesters;
 using Swashbuckle.Swagger.Annotations;
 using System;
@@ -14,6 +16,14 @@ namespace MFI.WebApi.Controllers
     [RoutePrefix("requester")]
     public class ClientRequesterController : ApiController
     {
+        private readonly ClientRequesterAppContract _clientRequesterApp;
+
+        public ClientRequesterController(
+            ClientRequesterAppContract clientRequesterApp)
+        {
+            _clientRequesterApp = clientRequesterApp;
+        }
+
         /// <summary>
         /// Create new Client Requester.
         /// </summary>
@@ -30,13 +40,15 @@ namespace MFI.WebApi.Controllers
         {
             try
             {
+                ClientRequester requester = _clientRequesterApp.Create(view.Name, view.Email, view.Password);
+
                 return new CreatedRequestResult(
                     "Usuário criado com sucesso",
                     Request,
                     new CreatedClientRequester
                     {
                         Email = view.Email,
-                        Id = "IdCriado",
+                        Id = requester.ClientId.ToString(),
                         Name = view.Name
                     });
             }

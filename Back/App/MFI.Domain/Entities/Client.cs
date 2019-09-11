@@ -15,12 +15,12 @@ namespace MFI.Domain.Entities
             string name,
             User user) : base()
         {
-            this.ClientId = new Guid();
+            this.ClientId = Guid.NewGuid();
             this.Email = email;
             this.Name = name;
             this.User = user;
 
-            CreatedByUserId = ClientId.ToString();
+            CreatedByUserId = user.UserId.ToString();
         }
 
         public Guid ClientId { get; set; }
