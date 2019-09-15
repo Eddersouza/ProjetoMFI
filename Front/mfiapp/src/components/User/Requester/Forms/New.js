@@ -14,10 +14,15 @@ const UserRequesterFormNew = () => {
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
+    const [passwordConfirm, setPasswordConfirm] = useState("")
 
-
+    const clearFields = () => {
+        setPassword('')
+        setEmail('')
+        setName('')
+    }
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
         const data = {
             Email: email,
@@ -27,12 +32,13 @@ const UserRequesterFormNew = () => {
 
         console.log(data)
     }
+
     return (
         <form onSubmit={handleSubmit}>
             <Row>
                 <Col md={12}>
-                    <FormGroup>
-                        <Label for="txtEmail">Email</Label>
+                    <FormGroup className="required">
+                        <Label className='control-label' for="txtEmail">Email:</Label>
                         <Input id="txtEmail"
                             name="email"
                             onChange={e => setEmail(e.target.value)}
@@ -44,8 +50,8 @@ const UserRequesterFormNew = () => {
             </Row>
             <Row>
                 <Col md={12}>
-                    <FormGroup>
-                        <Label for="txtName">Nome</Label>
+                    <FormGroup className="required">
+                        <Label className='control-label' for="txtName">Nome</Label>
                         <Input id="txtName"
                             name="name"
                             onChange={e => setName(e.target.value)}
@@ -57,8 +63,8 @@ const UserRequesterFormNew = () => {
             </Row>
             <Row>
                 <Col md={6}>
-                    <FormGroup>
-                        <Label for="txtPassword">Senha</Label>
+                    <FormGroup className="required">
+                        <Label className='control-label' for="txtPassword">Senha</Label>
                         <Input id="txtPassword"
                             name="password"
                             onChange={e => setPassword(e.target.value)}
@@ -68,9 +74,18 @@ const UserRequesterFormNew = () => {
                     </FormGroup>
                 </Col>
                 <Col md={6}>
-                    <FormGroup>
-                        <Label for="txtPassword">Confirme a Senha</Label>
-                        <Input type="password" name="passwordConfirm" id="txtPasswordConfirm" placeholder="Digite sua senha" />
+                    <FormGroup className="required">
+                        <Label className='control-label' for="txtPassword">Confirme a Senha</Label>
+                        <Input className={passwordConfirm !== password ? 'field-with-error' : ''}
+                            id="txtPasswordConfirm"
+                            name="passwordConfirm"
+                            onChange={e => setPasswordConfirm(e.target.value)}
+                            placeholder="Digite sua senha"
+                            type="password"
+                            value={passwordConfirm} />
+                        {(passwordConfirm !== password)
+                            ? <label className='obs-field'> Este campo deve ser igual ao campo senha.</label>
+                            : null}
                     </FormGroup>
                 </Col>
             </Row>
@@ -81,7 +96,11 @@ const UserRequesterFormNew = () => {
                             <FontAwesomeIcon icon="ban" />&nbsp;
                             Cancelar
                 </Button>
-                        <Button className="button180" color="secondary" title="Limpar Campos">
+                        <Button className="button180"
+                            color="secondary"
+                            onClick={clearFields}
+                            title="Limpar Campos"
+                            type='button'>
                             <FontAwesomeIcon icon="eraser" />&nbsp;
                             Limpar
                 </Button>
