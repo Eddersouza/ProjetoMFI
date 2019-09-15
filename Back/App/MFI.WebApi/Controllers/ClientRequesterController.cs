@@ -13,7 +13,7 @@ namespace MFI.WebApi.Controllers
     /// <summary>
     /// Controller to Client Requester
     /// </summary>
-    [RoutePrefix("requester")]
+    [RoutePrefix("mfiapi/requester")]
     public class ClientRequesterController : ApiController
     {
         private readonly ClientRequesterAppContract _clientRequesterApp;
@@ -33,6 +33,7 @@ namespace MFI.WebApi.Controllers
         /// </remarks>
         [HttpPost]
         [Route("")]
+        [SwaggerResponse(HttpStatusCode.OK, "Not applicable.")]
         [SwaggerResponse(HttpStatusCode.Created, "Client Requester successfully Created.", typeof(CreatedClientRequester))]
         [SwaggerResponse(HttpStatusCode.BadRequest, "Error on create Client Requester.", typeof(List<string>))]
         [SwaggerResponse(HttpStatusCode.InternalServerError, "System error in action.", typeof(string))]
