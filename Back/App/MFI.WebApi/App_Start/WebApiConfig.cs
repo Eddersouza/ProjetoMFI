@@ -10,7 +10,7 @@ namespace MFI.WebApi
         {
             // Web API configuration and services
 
-            config.Filters.Add(new CustomExceptionFilter());
+            config.Filters.Add(new CustomFilterDefault());
 
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);

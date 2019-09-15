@@ -138,7 +138,7 @@
     <Compile Include="Utils\ActionResults\CreatedRequestResult.cs" />
     <Compile Include="Utils\ActionResults\InternalServerErrorResult.cs" />
     <Compile Include="Utils\Contents\JsonContent.cs" />
-    <Compile Include="Utils\Filters\CustomExceptionFilter.cs" />
+    <Compile Include="Utils\Filters\CustomFilterDefault.cs" />
     <Compile Include="ViewModels\Clients\Requesters\CreatedClientRequester.cs" />
     <Compile Include="ViewModels\Clients\Requesters\CreateClientRequester.cs" />
   </ItemGroup>
