@@ -13,25 +13,24 @@ const UserTypeChooseProvider = () => {
         <Card>
             <CardBody>
                 <Row>
-                    <Col md={12}>
-                        <p className="lead">Você pode procurar orçamentos:</p>
+                    <Col md={12}>                     
+                        <p className="lead">Você pode oferecer orçamentos:</p>
                         <ul className="list-unstyled" style={{ lineHeight: "2" }}>
-                            <li><FontAwesomeIcon className="text-success" icon="check" />&nbsp;
-                              Fazer Orçamentos para sua festa
-                             </li>
-                            {/* <li><FontAwesomeIcon className="text-success" icon="check" />&nbsp;
-                              Escolher seus  fornecedores favoritos
-                              </li>
-                            <li><FontAwesomeIcon className="text-success" icon="check" />&nbsp;
-                              Avaliar os fornecedores  cadastrados
-                              </li> */}
+                            <li>
+                                <FontAwesomeIcon className="text-success" icon="check" />&nbsp;
+                                Mostre seus serviços
+                            </li>
+                            {/* <li>
+                                <FontAwesomeIcon className="text-success" icon="check" />&nbsp;
+                                Mostre suas promoções
+                            </li> */}
                         </ul>
                     </Col>
                 </Row>
                 <Row>
                     <Col md={12} className="text-center">
-                        <Button type="button" outline color="primary" size="lg" block>
-                            <FontAwesomeIcon className="text-primary" icon={["far","hand-point-right"]} />&nbsp;
+                        <Button type="button" outline color="secondary" size="lg" block>
+                            <FontAwesomeIcon className="text-secondary" icon={["far","hand-point-right"]} />&nbsp;
                                 Entre aqui
                         </Button>
                     </Col>

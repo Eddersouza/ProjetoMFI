@@ -13,3 +13,11 @@
 /Back/App/MFI.Data.EF/obj/Debug
 /Back/App/MFI.Utils/bin/Debug
 /Back/App/MFI.Utils/obj/Debug
+/Back/App/MFI.Application/bin/Release
+/Back/App/MFI.Data.EF/bin/Release
+/Back/App/MFI.Application/obj/Release
+/Back/App/MFI.Data.EF/obj/Release
+/Back/App/MFI.IoC/bin/Release
+/Back/App/MFI.IoC/obj/Release
+/Back/App/MFI.Utils/bin/Release
+/Back/App/MFI.Utils/obj/Release

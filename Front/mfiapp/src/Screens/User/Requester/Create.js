@@ -6,11 +6,16 @@ import {
     Col,
     Row
 } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import UserRequesterFormNew from '../../../components/User/Requester/Forms/New';
 
-const UserRequesterCreatePage = () => {
+const UserRequesterCreatePage = (props) => {
+    const returnLastPage = () => {
+        props.history.goBack();
+    }
     return (
         <>
             <Row>
@@ -20,8 +25,10 @@ const UserRequesterCreatePage = () => {
                 <Col md={12}>
                     <Card>
                         <CardHeader>
-                            <FontAwesomeIcon icon="reply" title="Voltar" />&nbsp;
-                                Novo Cliente
+                            <button className='btn' onClick={returnLastPage}>
+                                <FontAwesomeIcon icon="reply" title="Voltar" />&nbsp;
+                            </button>
+                            Novo Cliente
                         </CardHeader>
                     </Card>
                 </Col>
@@ -41,4 +48,4 @@ const UserRequesterCreatePage = () => {
         </>)
 }
 
-export default UserRequesterCreatePage
+export default withRouter(UserRequesterCreatePage)

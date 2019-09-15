@@ -21,10 +21,10 @@ const UserTypeChoose = () => {
           </Row>
           <Row>
             <Col md={6} sm={12} >
-              <UserTypeChooseProvider />
-            </Col>           
-            <Col md={6} sm={12} >
               <UserTypeChooseRequester />
+            </Col>
+            <Col md={6} sm={12} >
+              <UserTypeChooseProvider />
             </Col>
           </Row>
         </CardBody>
