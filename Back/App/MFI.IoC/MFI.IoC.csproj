@@ -48,6 +48,14 @@
       <Project>{1EA059BF-7FBB-42C1-922C-112F0FEBFFAC}</Project>
       <Name>MFI.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MFI.Data.EF\MFI.Data.EF.csproj">
+      <Project>{BB9DD3A9-CE58-4636-B5C7-A21C87E15ADB}</Project>
+      <Name>MFI.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MFI.Domain\MFI.Domain.csproj">
+      <Project>{91B89BFE-A5C3-40A1-B0A3-395EF7FC33AB}</Project>
+      <Name>MFI.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,6 +34,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Repositories\Base\BaseRepositoryContract.cs" />
+    <Compile Include="Contracts\Repositories\Base\UnityOfWorkContract.cs" />
+    <Compile Include="Contracts\Repositories\UserRepositoryContract.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\ClientRequester.cs" />
     <Compile Include="Entities\Entity.cs" />
@@ -47,5 +50,6 @@
       <Name>edrsys.Utils</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

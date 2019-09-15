@@ -1,5 +1,10 @@
 ﻿using MFI.Application;
 using MFI.Application.Interfaces;
+using MFI.Data.EF.Contexts;
+using MFI.Data.EF.Repositories;
+using MFI.Data.EF.Repositories.Base;
+using MFI.Domain.Contracts.Repositories;
+using MFI.Domain.Contracts.Repositories.Base;
 using SimpleInjector;
 
 namespace MFI.IoC
@@ -17,7 +22,7 @@ namespace MFI.IoC
         }
 
         private static void RegisterApps(
-            Container container, 
+            Container container,
             Lifestyle lifestyle)
         {
             container.Register<ClientRequesterAppContract, ClientRequesterApp>(lifestyle);
@@ -27,8 +32,10 @@ namespace MFI.IoC
             Container container,
             Lifestyle lifestyle)
         {
-            //container.Register(typeof(BaseRepositoryContract<>), typeof(BaseRepository<>), lifestyle);
-            //container.Register<FestINFMSSQLContext>(lifestyle);
+            container.Register<UserRepositoryContract, UserRepository>(lifestyle);
+            container.Register<UnityOfWorkContract, UnitOfWork>(lifestyle);
+            container.Register(typeof(BaseRepositoryContract<>), typeof(BaseRepository<>), lifestyle);
+            container.Register<MFIEFContext>(lifestyle);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace MFI.Data.EF.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201909141518316_initialDBAndUser"; }
+            get { return "201909150106204_initialDBAndUser"; }
         }
         
         string IMigrationMetadata.Source

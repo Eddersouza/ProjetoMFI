@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using MFI.WebApi.Utils.Filters;
+using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace MFI.WebApi
@@ -8,6 +9,8 @@ namespace MFI.WebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+
+            config.Filters.Add(new CustomExceptionFilter());
 
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);

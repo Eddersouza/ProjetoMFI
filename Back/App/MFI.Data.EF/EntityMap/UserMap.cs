@@ -10,7 +10,7 @@ namespace MFI.Data.EF.EntityMap
     {
         public UserMap()
         {
-            this.ToTable("Users", MFISetting.SchemaMFI);
+            this.ToTable("Users");
 
             HasKey(u => u.UserId);
 

@@ -8,7 +8,7 @@ namespace MFI.Data.EF.Migrations
         public override void Up()
         {
             CreateTable(
-                "MFI.Users",
+                "dbo.Users",
                 c => new
                     {
                         UserId = c.Guid(nullable: false),
@@ -23,7 +23,7 @@ namespace MFI.Data.EF.Migrations
         
         public override void Down()
         {
-            DropTable("MFI.Users");
+            DropTable("dbo.Users");
         }
     }
 }

@@ -65,15 +65,15 @@
   <ItemGroup>
     <Compile Include="Contexts\MFIEFContext.cs" />
     <Compile Include="EntityMap\UserMap.cs" />
-    <Compile Include="Migrations\201909141518316_initialDBAndUser.cs" />
-    <Compile Include="Migrations\201909141518316_initialDBAndUser.Designer.cs">
-      <DependentUpon>201909141518316_initialDBAndUser.cs</DependentUpon>
+    <Compile Include="Migrations\201909150106204_initialDBAndUser.cs" />
+    <Compile Include="Migrations\201909150106204_initialDBAndUser.Designer.cs">
+      <DependentUpon>201909150106204_initialDBAndUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
+    <Compile Include="Repositories\Base\BaseRepository.cs" />
+    <Compile Include="Repositories\Base\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -89,8 +89,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909141518316_initialDBAndUser.resx">
-      <DependentUpon>201909141518316_initialDBAndUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909150106204_initialDBAndUser.resx">
+      <DependentUpon>201909150106204_initialDBAndUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
