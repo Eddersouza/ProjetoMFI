@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Repositories\Base\BaseRepositoryContract.cs" />
     <Compile Include="Contracts\Repositories\Base\UnityOfWorkContract.cs" />
+    <Compile Include="Contracts\Repositories\ClientRequesterRepositoryContract.cs" />
     <Compile Include="Contracts\Repositories\UserRepositoryContract.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\ClientRequester.cs" />

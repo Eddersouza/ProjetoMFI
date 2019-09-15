@@ -31,7 +31,8 @@ namespace MFI.IoC
         private static void RegisterRepositories(
             Container container,
             Lifestyle lifestyle)
-        {
+        {            
+            container.Register<ClientRequesterRepositoryContract, ClientRequesterRepository>(lifestyle);
             container.Register<UserRepositoryContract, UserRepository>(lifestyle);
             container.Register<UnityOfWorkContract, UnitOfWork>(lifestyle);
             container.Register(typeof(BaseRepositoryContract<>), typeof(BaseRepository<>), lifestyle);

@@ -6,6 +6,12 @@ namespace MFI.Domain.Entities
 {
     public class Client : Entity
     {
+        public const int EmailMaxLength = 100;
+
+        public const int NameMaxLength = 80;
+
+        public const int TypeCodeMaxLength = 20;
+
         public Client()
         {
         }
@@ -34,6 +40,7 @@ namespace MFI.Domain.Entities
         }
 
         public string TypeCode { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
+        public Guid UserId { get; set; }
     }
 }

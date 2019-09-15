@@ -14,22 +14,22 @@ namespace MFI.Data.EF.EntityMap
 
             HasKey(u => u.UserId);
 
-            this.Property(c => c.UserId)
+            Property(u => u.UserId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None)
                 .IsRequired();
 
-            this.Property(u => u.Password)
+            Property(u => u.Password)
                 .HasMaxLength(User.PasswordWhithEncriptMaxLength)
                 .IsRequired();
 
-            this.Property(u => u.Email)
+            Property(u => u.Email)
                 .HasMaxLength(User.EmailMaxLength)
                 .IsRequired();
 
-            this.Property(e => e.CreateDate)
+            Property(e => e.CreateDate)
                 .IsRequired();
 
-            this.Property(e => e.CreatedByUserId)
+            Property(e => e.CreatedByUserId)
                 .HasMaxLength(36)
                 .IsRequired();
         }

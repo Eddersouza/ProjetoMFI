@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MFI.Domain.Entities
 {
@@ -62,5 +63,7 @@ namespace MFI.Domain.Entities
         /// User Email
         /// </summary>
         public string Email { get; set; }
+        
+        public virtual List<Client> Clients { get; set; }
     }
 }

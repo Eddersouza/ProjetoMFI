@@ -16,6 +16,8 @@ namespace MFI.Data.EF.Contexts
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserMap());
+            modelBuilder.Configurations.Add(new ClientMap());
+            modelBuilder.Configurations.Add(new ClientRequesterMap());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MFI.Data.EF.Contexts;
+using MFI.Domain.Contracts.Repositories;
 using MFI.Domain.Contracts.Repositories.Base;
 using System.Data;
 using System.Data.Entity;
@@ -10,10 +11,22 @@ namespace MFI.Data.EF.Repositories.Base
         private readonly MFIEFContext _context;
         private DbContextTransaction _dbTransaction;
 
-        public UnitOfWork(MFIEFContext context)
+        private readonly UserRepositoryContract _userRepository;
+        private readonly ClientRequesterRepositoryContract _clientRequesterRepository;
+
+        public UnitOfWork(
+            MFIEFContext context,
+            UserRepositoryContract userRepository,
+            ClientRequesterRepositoryContract clientRequesterRepository)
         {
             this._context = context;
+            this._userRepository = userRepository;
+            this._clientRequesterRepository = clientRequesterRepository;
         }
+
+        public UserRepositoryContract User => _userRepository;
+
+        public ClientRequesterRepositoryContract ClientRequester => _clientRequesterRepository;
 
         public void BeginTransaction()
         {
