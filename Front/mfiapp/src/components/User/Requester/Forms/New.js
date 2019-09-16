@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { withRouter } from 'react-router-dom';
 
+import Api from '../../../../Services/Api'
+
 import {
     Button,
     FormGroup,
@@ -37,7 +39,16 @@ const UserRequesterFormNew = (props) => {
             Name: name,
             Password: password
         }
-
+        if (passwordConfirm === password) {
+            Api.post('mfiapi/requester', data)
+                .then(function (response) {
+                    console.log(response.data);
+                    console.log(response.status);
+                    console.log(response.statusText);
+                    console.log(response.headers);
+                    console.log(response.config);
+                });
+        }
         console.log(data)
     }
 
