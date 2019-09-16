@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { withRouter } from 'react-router-dom';
+
 import {
     Button,
     FormGroup,
@@ -10,7 +12,7 @@ import {
     Col
 } from 'reactstrap';
 
-const UserRequesterFormNew = () => {
+const UserRequesterFormNew = (props) => {
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
@@ -18,9 +20,15 @@ const UserRequesterFormNew = () => {
 
     const clearFields = () => {
         setPassword('')
+        setPasswordConfirm('')
         setEmail('')
         setName('')
     }
+
+    const returnLastPage = () => {
+        props.history.push('/');
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -92,7 +100,8 @@ const UserRequesterFormNew = () => {
             <Row>
                 <Col md={12}>
                     <FormGroup>
-                        <Button className="button180" color="danger" title="Cancelar Criação de Cliente">
+                        <Button className="button180" color="danger" onClick={returnLastPage}
+                            title="Cancelar Criação de Cliente">
                             <FontAwesomeIcon icon="ban" />&nbsp;
                             Cancelar
                 </Button>
@@ -115,4 +124,4 @@ const UserRequesterFormNew = () => {
     );
 }
 
-export default UserRequesterFormNew;
+export default withRouter(UserRequesterFormNew)
