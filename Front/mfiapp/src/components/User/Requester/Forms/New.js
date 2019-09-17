@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { OpenToastError } from '../../../../Functions/Toast/Message'
 import { withRouter } from 'react-router-dom';
 
 import Api from '../../../../Services/Api'
@@ -25,6 +25,9 @@ const UserRequesterFormNew = (props) => {
         setPasswordConfirm('')
         setEmail('')
         setName('')
+
+        let err = ['teste 1', 'teste2']
+        OpenToastError(err)
     }
 
     const returnLastPage = () => {
