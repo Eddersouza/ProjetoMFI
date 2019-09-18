@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using MFI.WebApi.Utils.Contents;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,12 +18,13 @@ namespace MFI.WebApi.Utils.ActionResults
         /// </summary>
         /// <param name="reasonPhrase">Razão do erro.</param>
         /// <param name="request">Request da aplicação.</param>
-        public InternalServerErrorResult(string reasonPhrase, HttpRequestMessage request)
+        public InternalServerErrorResult(string reasonPhrase, HttpRequestMessage request, List<string> errorsContent)
         {
             this.ReasonPhrase = reasonPhrase;
             this.Request = request;
+            this.ErrorsContent = errorsContent;
         }
-
+        public List<string> ErrorsContent { get; set; }
         /// <summary>
         /// Descrição do .
         /// </summary>
@@ -51,7 +54,8 @@ namespace MFI.WebApi.Utils.ActionResults
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
             {
                 RequestMessage = this.Request,
-                ReasonPhrase = this.ReasonPhrase
+                ReasonPhrase = this.ReasonPhrase,
+                Content = new JsonContent(ErrorsContent)
             };
 
             return response;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { OpenToastError } from '../../../../Functions/Toast/Message'
+import { OpenToastSuccess } from '../../../../Functions/Toast/Message'
 import { withRouter } from 'react-router-dom';
 
 import Api from '../../../../Services/Api'
@@ -25,9 +25,6 @@ const UserRequesterFormNew = (props) => {
         setPasswordConfirm('')
         setEmail('')
         setName('')
-
-        let err = ['teste 1', 'teste2']
-        OpenToastError(err)
     }
 
     const returnLastPage = () => {
@@ -50,6 +47,11 @@ const UserRequesterFormNew = (props) => {
                     console.log(response.statusText);
                     console.log(response.headers);
                     console.log(response.config);
+                    let successMessages = []
+                    successMessages.push('Adicionado com Sucesso.')
+                    OpenToastSuccess(successMessages)
+                }).catch(error => {
+                    console.log(error);
                 });
         }
         console.log(data)
