@@ -12,6 +12,8 @@ namespace MFI.Domain.Entities
 
         public const int NameMaxLength = 80;
 
+        public const int NameMinLength = 6;
+
         public const int TypeCodeMaxLength = 20;
 
         private static EventNotificationDescription WarningEmptyEmail =
@@ -19,10 +21,25 @@ namespace MFI.Domain.Entities
                "O E-mail é obrigatório.",
                new EventNotificationWarning());
 
-        private static EventNotificationDescription WarningInvalidEmailPattern =
+        private static EventNotificationDescription WarningEmptyName =
            new EventNotificationDescription(
+               "O Nome é obrigatório.",
+               new EventNotificationWarning());
+
+        private static EventNotificationDescription WarningInvalidEmailPattern =
+                   new EventNotificationDescription(
                "O E-mail está em formato inválido.",
                new EventNotificationWarning());
+
+        private static EventNotificationDescription WarningNameGreatherMaximun =
+            new EventNotificationDescription(
+                string.Format("O Nome tem que ter menos que {0} caracteres.", NameMaxLength),
+                new EventNotificationWarning());
+
+        private static EventNotificationDescription WarningNameLessThanMinimun =
+            new EventNotificationDescription(
+                string.Format("O Nome tem que ter {0} ou mais caracteres.", NameMinLength),
+                new EventNotificationWarning());
 
         public Client()
         {
@@ -42,6 +59,10 @@ namespace MFI.Domain.Entities
 
             TestCondition(string.IsNullOrEmpty(this.Email), WarningEmptyEmail);
             TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);
+
+            TestCondition(string.IsNullOrEmpty(this.Name), WarningEmptyName);
+            TestCondition((this.Name ?? string.Empty).Length < NameMinLength, WarningNameLessThanMinimun);
+            TestCondition((this.Name ?? string.Empty).Length > NameMaxLength, WarningNameGreatherMaximun);
         }
 
         public Guid ClientId { get; set; }
