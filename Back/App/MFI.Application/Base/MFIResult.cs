@@ -10,8 +10,13 @@ namespace MFI.Application.Base
         public List<string> Warnings => warnings;
 
         public void AddWarning(string message)
-        {            
+        {
             Warnings.Add(message);
+        }
+
+        public void AddWarnings(List<string> messages)
+        {
+            Warnings.AddRange(messages);
         }
     }
 }

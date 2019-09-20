@@ -18,7 +18,7 @@ namespace MFI.Application
             this._unityOfWork = unityOfWork;
         }
 
-        public CreatedClientRequester Create(
+        public MFIResult Create(
            CreateClientRequester client)
         {
             CreatedClientRequester createdClient = null;
@@ -28,39 +28,58 @@ namespace MFI.Application
                     .Get(cli => cli.Email == client.Email)
                     .FirstOrDefault(cli => cli.Type.Equals(ClientType.Requester)) != null;
 
-            
             if (requesterExists)
+                return CreateResultHasClient(client);
+
+            User user = new User(client.Email, client.Password);
+
+            ClientRequester requester =
+                new ClientRequester(client.Email, client.Name, user);
+
+            if (!requester.IsValid())
+                return CreateResultInvalidRequester(requester);
+
+            return CreateNewRequester(requester);
+        }
+
+        private CreatedClientRequester CreateNewRequester(ClientRequester requester)
+        {
+            CreatedClientRequester createdClient;
+            this._unityOfWork.ClientRequester.Create(requester);
+            this._unityOfWork.SaveChanges();
+
+            createdClient = new CreatedClientRequester
             {
-                createdClient = new CreatedClientRequester
-                {
-                    Email = client?.Email,
-                    Id = string.Empty,
-                    Name = client?.Name
-                };
+                Email = requester?.Email,
+                Id = requester.ClientId.ToString(),
+                Name = requester?.Name
+            };
+            return createdClient;
+        }
 
-                createdClient.AddWarning("Cliente Já Existente.");
-            }
-            else
+        private NotCreatedClientRequester CreateResultHasClient(
+            CreateClientRequester client)
+        {
+            NotCreatedClientRequester createdClient = new NotCreatedClientRequester
             {
-                User user = new User(client.Email, client.Password);
+                Email = client?.Email,
 
-                ClientRequester requester =
-                    new ClientRequester(client.Email, client.Name, user);
+                Name = client?.Name
+            };
 
-                this._unityOfWork.ClientRequester.Create(requester);
-                this._unityOfWork.SaveChanges();
+            createdClient.AddWarning("Cliente Já Existente.");
 
-                createdClient = new CreatedClientRequester
-                {
-                    Email = requester?.Email,
-                    Id = requester.ClientId.ToString(),
-                    Name = requester?.Name
-                };
-            }
+            return createdClient;
+        }
 
-
-
-
+        private NotCreatedClientRequester CreateResultInvalidRequester(ClientRequester requester)
+        {
+            NotCreatedClientRequester createdClient = new NotCreatedClientRequester
+            {
+                Email = requester?.Email,
+                Name = requester?.Name
+            };
+            createdClient.AddWarnings(requester.EventNotification.Warnings.Select(x => x.ToString()).ToList());
             return createdClient;
         }
     }

@@ -1,4 +1,6 @@
-﻿using edrsys.Utils.extensions;
+﻿using edrsys.EventNotification;
+using edrsys.EventNotification.Levels;
+using edrsys.Utils.extensions;
 using MFI.Domain.Enums;
 using System;
 
@@ -11,6 +13,16 @@ namespace MFI.Domain.Entities
         public const int NameMaxLength = 80;
 
         public const int TypeCodeMaxLength = 20;
+
+        private static EventNotificationDescription WarningEmptyEmail =
+           new EventNotificationDescription(
+               "O E-mail é obrigatório.",
+               new EventNotificationWarning());
+
+        private static EventNotificationDescription WarningInvalidEmailPattern =
+           new EventNotificationDescription(
+               "O E-mail está em formato inválido.",
+               new EventNotificationWarning());
 
         public Client()
         {
@@ -27,6 +39,9 @@ namespace MFI.Domain.Entities
             this.User = user;
 
             CreatedByUserId = user.UserId.ToString();
+
+            TestCondition(string.IsNullOrEmpty(this.Email), WarningEmptyEmail);
+            TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);
         }
 
         public Guid ClientId { get; set; }

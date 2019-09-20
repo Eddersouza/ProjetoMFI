@@ -1,11 +1,12 @@
-﻿using System;
+﻿using edrsys.EventNotification.Entities;
+using System;
 
 namespace MFI.Domain.Entities
 {
     /// <summary>
     /// Represents the entity base.
     /// </summary>
-    public class Entity
+    public class Entity : EventNotificationEntity
     {
         /// <summary>
         /// Create new Entity.

@@ -1,10 +1,11 @@
-﻿using MFI.Application.ViewModels.Clients.Requesters;
+﻿using MFI.Application.Base;
+using MFI.Application.ViewModels.Clients.Requesters;
 
 namespace MFI.Application.Interfaces
 {
     public interface ClientRequesterAppContract
     {
-        CreatedClientRequester Create(
+        MFIResult Create(
             CreateClientRequester client);
     }
 }

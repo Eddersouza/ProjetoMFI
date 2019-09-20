@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\edrsys_EventNotification\edrsys.EventNotification\edrsys.EventNotification.csproj">
+      <Project>{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}</Project>
+      <Name>edrsys.EventNotification</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\edrsys_Utils\edrsys.Utils\edrsys.Utils.csproj">
       <Project>{47779b3b-1383-4d92-a44f-38b764c57710}</Project>
       <Name>edrsys.Utils</Name>

@@ -9,5 +9,7 @@ namespace MFI.Application.Base
         List<string> Warnings { get; }
 
         void AddWarning(string message);
+
+        void AddWarnings(List<string> messages);
     }
 }

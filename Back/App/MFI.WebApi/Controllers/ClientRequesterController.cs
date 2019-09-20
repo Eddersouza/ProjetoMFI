@@ -35,8 +35,7 @@ namespace MFI.WebApi.Controllers
         [Route("")]
         [SwaggerResponse(HttpStatusCode.OK, "Not applicable.")]
         [SwaggerResponse(HttpStatusCode.Created, "Client Requester successfully Created.", typeof(CreatedClientRequester))]
-        [SwaggerResponse(HttpStatusCode.BadRequest, "Error on create Client Requester.", typeof(CreatedClientRequester))]
-        [SwaggerResponse(HttpStatusCode.InternalServerError, "System error in action.", typeof(string))]
+        [SwaggerResponse(HttpStatusCode.BadRequest, "Error on create Client Requester.", typeof(NotCreatedClientRequester))]
         public IHttpActionResult Post([FromBody]CreateClientRequester view)
         {
             MFIResultContract requester = _clientRequesterApp.Create(view);
