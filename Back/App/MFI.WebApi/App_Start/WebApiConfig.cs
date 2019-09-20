@@ -10,12 +10,12 @@ namespace MFI.WebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var cors = new EnableCorsAttribute("http://localhost:3000", "*", "*");
 
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
 
             config.Filters.Add(new CustomFilterDefault());
 
-            var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
 
             // Web API routes

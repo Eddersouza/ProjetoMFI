@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFI.Data.EF", "App\MFI.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFI.Utils", "App\MFI.Utils\MFI.Utils.csproj", "{E2478D2E-B386-47C5-9425-07651A41AEC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "edrsys.EventNotification", "..\..\..\edrsys_EventNotification\edrsys.EventNotification\edrsys.EventNotification.csproj", "{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{E2478D2E-B386-47C5-9425-07651A41AEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2478D2E-B386-47C5-9425-07651A41AEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2478D2E-B386-47C5-9425-07651A41AEC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{1EA059BF-7FBB-42C1-922C-112F0FEBFFAC} = {702DC28D-0033-48E7-A6A9-DA8871EE8070}
 		{BB9DD3A9-CE58-4636-B5C7-A21C87E15ADB} = {32C68412-4358-4CC4-B10E-157DB7902FA8}
 		{E2478D2E-B386-47C5-9425-07651A41AEC2} = {B1269535-78F9-4212-845A-03B91913FD47}
+		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D} = {B1269535-78F9-4212-845A-03B91913FD47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A55B90D1-5FA2-4E85-87B2-C6DB7E3307CD}

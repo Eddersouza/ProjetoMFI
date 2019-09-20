@@ -140,8 +140,6 @@
     <Compile Include="Utils\Contents\JsonContent.cs" />
     <Compile Include="Utils\Filters\CustomFilterDefault.cs" />
     <Compile Include="Utils\Filters\GlobalExceptionHandler.cs" />
-    <Compile Include="ViewModels\Clients\Requesters\CreatedClientRequester.cs" />
-    <Compile Include="ViewModels\Clients\Requesters\CreateClientRequester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -155,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MFI.Application\MFI.Application.csproj">

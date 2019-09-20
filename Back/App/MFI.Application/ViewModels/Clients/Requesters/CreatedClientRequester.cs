@@ -1,9 +1,11 @@
-﻿namespace MFI.WebApi.ViewModels.Clients.Requesters
+﻿using MFI.Application.Base;
+
+namespace MFI.Application.ViewModels.Clients.Requesters
 {
     /// <summary>
     /// View to Create client Requester.
     /// </summary>
-    public class CreatedClientRequester
+    public class CreatedClientRequester : MFIResult
     {
         /// <summary>
         /// Client Requester Email.

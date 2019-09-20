@@ -1,6 +1,10 @@
-﻿using MFI.Application.Interfaces;
+﻿using MFI.Application.Base;
+using MFI.Application.Interfaces;
+using MFI.Application.ViewModels.Clients.Requesters;
 using MFI.Domain.Contracts.Repositories.Base;
 using MFI.Domain.Entities;
+using MFI.Domain.Enums;
+using System.Linq;
 
 namespace MFI.Application
 {
@@ -14,20 +18,50 @@ namespace MFI.Application
             this._unityOfWork = unityOfWork;
         }
 
-        public ClientRequester Create(
-            string name,
-            string email,
-            string password)
+        public CreatedClientRequester Create(
+           CreateClientRequester client)
         {
-            User user = new User(email, password);
+            CreatedClientRequester createdClient = null;
 
-            ClientRequester requester =
-                new ClientRequester(email, name, user);
+            bool requesterExists =
+                this._unityOfWork.ClientRequester
+                    .Get(cli => cli.Email == client.Email)
+                    .FirstOrDefault(cli => cli.Type.Equals(ClientType.Requester)) != null;
 
-            this._unityOfWork.ClientRequester.Create(requester);
-            this._unityOfWork.SaveChanges();
+            
+            if (requesterExists)
+            {
+                createdClient = new CreatedClientRequester
+                {
+                    Email = client?.Email,
+                    Id = string.Empty,
+                    Name = client?.Name
+                };
 
-            return requester;
+                createdClient.AddWarning("Cliente Já Existente.");
+            }
+            else
+            {
+                User user = new User(client.Email, client.Password);
+
+                ClientRequester requester =
+                    new ClientRequester(client.Email, client.Name, user);
+
+                this._unityOfWork.ClientRequester.Create(requester);
+                this._unityOfWork.SaveChanges();
+
+                createdClient = new CreatedClientRequester
+                {
+                    Email = requester?.Email,
+                    Id = requester.ClientId.ToString(),
+                    Name = requester?.Name
+                };
+            }
+
+
+
+
+            return createdClient;
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using MFI.Domain.Entities;
+﻿using MFI.Application.ViewModels.Clients.Requesters;
 
 namespace MFI.Application.Interfaces
 {
     public interface ClientRequesterAppContract
     {
-        ClientRequester Create(
-            string name, 
-            string email, 
-            string password);
+        CreatedClientRequester Create(
+            CreateClientRequester client);
     }
 }

@@ -1,9 +1,9 @@
-﻿using MFI.Application.Interfaces;
+﻿using MFI.Application.Base;
+using MFI.Application.Interfaces;
+using MFI.Application.ViewModels.Clients.Requesters;
 using MFI.Domain.Entities;
 using MFI.WebApi.Utils.ActionResults;
-using MFI.WebApi.ViewModels.Clients.Requesters;
 using Swashbuckle.Swagger.Annotations;
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
@@ -35,22 +35,17 @@ namespace MFI.WebApi.Controllers
         [Route("")]
         [SwaggerResponse(HttpStatusCode.OK, "Not applicable.")]
         [SwaggerResponse(HttpStatusCode.Created, "Client Requester successfully Created.", typeof(CreatedClientRequester))]
-        [SwaggerResponse(HttpStatusCode.BadRequest, "Error on create Client Requester.", typeof(List<string>))]
+        [SwaggerResponse(HttpStatusCode.BadRequest, "Error on create Client Requester.", typeof(CreatedClientRequester))]
         [SwaggerResponse(HttpStatusCode.InternalServerError, "System error in action.", typeof(string))]
         public IHttpActionResult Post([FromBody]CreateClientRequester view)
         {
-            ClientRequester requester = _clientRequesterApp.Create(view.Name, view.Email, view.Password);
+            MFIResultContract requester = _clientRequesterApp.Create(view);
 
-            return new CreatedRequestResult(
-                "Usuário criado com sucesso",
-                Request,
-                new CreatedClientRequester
-                {
-                    Email = view.Email,
-                    Id = requester.ClientId.ToString(),
-                    Name = view.Name
-                });
+            if (requester.HasSuccess)
+                return new CreatedRequestResult("Cliente criado com sucesso", Request, requester);
 
+
+            return new BadRequestResult("Erro ao criar Cliente", Request, requester);
         }
     }
 }

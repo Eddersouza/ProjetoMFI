@@ -25,18 +25,18 @@ namespace MFI.WebApi.Utils.ActionResults
             this.Request = request;
         }
 
+
         /// <summary>
         /// Construtor da classe.
         /// </summary>
         /// <param name="reasonPhrase">Razão do erro.</param>
         /// <param name="request">Request da aplicação.</param>
+        /// <param name="objectToReturn">Object to return</param>
         public CreatedRequestResult(
             string reasonPhrase,
             HttpRequestMessage request,
-            object objectToReturn)
+            object objectToReturn) : this(reasonPhrase, request)
         {
-            this.ReasonPhrase = reasonPhrase;
-            this.Request = request;
             this.ObjectToReturn = objectToReturn;
         }
 

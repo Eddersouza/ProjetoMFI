@@ -34,9 +34,13 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\MFIResult.cs" />
     <Compile Include="ClientRequesterApp.cs" />
     <Compile Include="Interfaces\ClientRequesterAppContract.cs" />
+    <Compile Include="Base\MFIResultContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Clients\Requesters\CreateClientRequester.cs" />
+    <Compile Include="ViewModels\Clients\Requesters\CreatedClientRequester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MFI.Domain\MFI.Domain.csproj">

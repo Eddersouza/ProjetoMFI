@@ -1,4 +1,4 @@
-﻿namespace MFI.WebApi.ViewModels.Clients.Requesters
+﻿namespace MFI.Application.ViewModels.Clients.Requesters
 {
     /// <summary>
     /// View to Create client Requester.
