@@ -1,9 +1,11 @@
-﻿using MFI.Application.Base;
+﻿using edrsys.EventNotification.Base;
+using MFI.Application.Base;
 using MFI.Application.Interfaces;
 using MFI.Application.ViewModels.Clients.Requesters;
 using MFI.Domain.Contracts.Repositories.Base;
 using MFI.Domain.Entities;
 using MFI.Domain.Enums;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MFI.Application
@@ -32,9 +34,19 @@ namespace MFI.Application
                 return CreateResultHasClient(client);
 
             User user = new User(client.Email, client.Password);
+            user.ValidadeToCreation();
+            user.EncriptPassword();
 
             ClientRequester requester =
                 new ClientRequester(client.Email, client.Name, user);
+
+            if (!user.IsValid())
+            {
+                requester.EventNotification
+                    .Add(user.EventNotification.List);
+
+                return CreateResultInvalidRequester(requester);
+            }
 
             if (!requester.IsValid())
                 return CreateResultInvalidRequester(requester);

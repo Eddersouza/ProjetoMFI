@@ -1,4 +1,7 @@
-﻿using System;
+﻿using edrsys.EventNotification;
+using edrsys.EventNotification.Levels;
+using edrsys.Utils.extensions;
+using System;
 using System.Collections.Generic;
 
 namespace MFI.Domain.Entities
@@ -25,6 +28,31 @@ namespace MFI.Domain.Entities
         /// </summary>
         public const int PasswordWhithoutEncriptMinLength = 6;
 
+        private static EventNotificationDescription WarningEmptyEmail =
+            new EventNotificationDescription(
+                "O E-mail é obrigatório.",
+                new EventNotificationWarning());
+
+        private static EventNotificationDescription WarningEmptyPassword =
+            new EventNotificationDescription(
+                "A Senha é obrigatória.",
+                new EventNotificationWarning());
+
+        private static EventNotificationDescription WarningInvalidEmailPattern =
+            new EventNotificationDescription(
+                "O E-mail está em formato inválido.",
+                new EventNotificationWarning());
+
+        private static EventNotificationDescription WarningPasswordWithoutEncriptGreatherMaximun =
+                                    new EventNotificationDescription(
+                string.Format("A Senha tem que ter menos que {0} caracteres.", PasswordWhithoutEncriptMaxLength),
+                new EventNotificationWarning());
+
+        private static EventNotificationDescription WarningPasswordWithoutEncriptLessThanMinimun =
+            new EventNotificationDescription(
+                string.Format("A Senha tem que ter mais que {0} caracteres.", PasswordWhithoutEncriptMinLength),
+                new EventNotificationWarning());
+
         /// <summary>
         /// Create Empty user Entity.
         /// </summary>
@@ -48,11 +76,12 @@ namespace MFI.Domain.Entities
             CreatedByUserId = UserId.ToString();
         }
 
-        /// <summary>
-        /// Id From user entity.
-        /// </summary>
-        public Guid UserId { get; set; }
+        public virtual List<Client> Clients { get; set; }
 
+        /// <summary>
+        /// User Email
+        /// </summary>
+        public string Email { get; set; }
 
         /// <summary>
         /// User Password
@@ -60,10 +89,29 @@ namespace MFI.Domain.Entities
         public string Password { get; set; }
 
         /// <summary>
-        /// User Email
+        /// Id From user entity.
         /// </summary>
-        public string Email { get; set; }
-        
-        public virtual List<Client> Clients { get; set; }
+        public Guid UserId { get; set; }
+
+        public void EncriptPassword()
+        {
+            if (!string.IsNullOrEmpty(this.Password))
+                this.Password = this.Password.Encrypt(string.Format(this.UserId.ToString()));
+        }
+
+        public void ValidadeToCreation()
+        {
+            TestCondition(string.IsNullOrEmpty(this.Email), WarningEmptyEmail);
+            TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);
+
+            TestCondition(string.IsNullOrEmpty(this.Password), WarningEmptyPassword);
+            TestCondition(
+                (this.Password ?? string.Empty).Length < PasswordWhithoutEncriptMinLength,
+                WarningPasswordWithoutEncriptLessThanMinimun);
+            TestCondition(
+                (this.Password ?? string.Empty).Length >
+                PasswordWhithoutEncriptMaxLength,
+                WarningPasswordWithoutEncriptGreatherMaximun);
+        }
     }
 }

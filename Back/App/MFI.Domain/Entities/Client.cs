@@ -57,12 +57,12 @@ namespace MFI.Domain.Entities
 
             CreatedByUserId = user.UserId.ToString();
 
-            TestCondition(string.IsNullOrEmpty(this.Email), WarningEmptyEmail);
-            TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);
+            //TestCondition(string.IsNullOrEmpty(this.Email), WarningEmptyEmail);
+            //TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);
 
-            TestCondition(string.IsNullOrEmpty(this.Name), WarningEmptyName);
-            TestCondition((this.Name ?? string.Empty).Length < NameMinLength, WarningNameLessThanMinimun);
-            TestCondition((this.Name ?? string.Empty).Length > NameMaxLength, WarningNameGreatherMaximun);
+            //TestCondition(string.IsNullOrEmpty(this.Name), WarningEmptyName);
+            //TestCondition((this.Name ?? string.Empty).Length < NameMinLength, WarningNameLessThanMinimun);
+            //TestCondition((this.Name ?? string.Empty).Length > NameMaxLength, WarningNameGreatherMaximun);
         }
 
         public Guid ClientId { get; set; }
