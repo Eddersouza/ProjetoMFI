@@ -1,4 +1,5 @@
-﻿using MFI.WebApi.Utils.Contents;
+﻿using edrsys.Utils.extensions;
+using MFI.WebApi.Utils.Contents;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -76,7 +77,7 @@ namespace MFI.WebApi.Utils.ActionResults
                 RequestMessage = this.Request,
             };
 
-            if (!string.IsNullOrEmpty(this.ReasonPhrase))
+            if (!this.ReasonPhrase.IsNullOrEmpty())
                 response.ReasonPhrase = this.ReasonPhrase;
 
             if (ObjectToReturn != null)

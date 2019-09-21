@@ -156,6 +156,10 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\edrsys_Utils\edrsys.Utils\edrsys.Utils.csproj">
+      <Project>{47779B3B-1383-4D92-A44F-38B764C57710}</Project>
+      <Name>edrsys.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MFI.Application\MFI.Application.csproj">
       <Project>{1EA059BF-7FBB-42C1-922C-112F0FEBFFAC}</Project>
       <Name>MFI.Application</Name>

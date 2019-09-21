@@ -1,5 +1,4 @@
-﻿using edrsys.EventNotification.Base;
-using MFI.Application.Base;
+﻿using MFI.Application.Base;
 using MFI.Application.Interfaces;
 using MFI.Application.ViewModels.Clients.Requesters;
 using MFI.Domain.Contracts.Repositories.Base;
@@ -23,8 +22,6 @@ namespace MFI.Application
         public MFIResult Create(
            CreateClientRequester client)
         {
-            CreatedClientRequester createdClient = null;
-
             bool requesterExists =
                 this._unityOfWork.ClientRequester
                     .Get(cli => cli.Email == client.Email)
@@ -37,19 +34,22 @@ namespace MFI.Application
             user.ValidadeToCreation();
             user.EncriptPassword();
 
+            if (!user.IsValid())
+                return CreateResultInvalidRequester(
+                    client.Email,
+                    client.Name,
+                    user.EventNotification.List);
+
             ClientRequester requester =
                 new ClientRequester(client.Email, client.Name, user);
 
-            if (!user.IsValid())
-            {
-                requester.EventNotification
-                    .Add(user.EventNotification.List);
-
-                return CreateResultInvalidRequester(requester);
-            }
+            requester.ValidadeToCreation();
 
             if (!requester.IsValid())
-                return CreateResultInvalidRequester(requester);
+                return CreateResultInvalidRequester(
+                    requester.Email,
+                    requester.Name,
+                    requester.EventNotification.List);
 
             return CreateNewRequester(requester);
         }
@@ -84,14 +84,17 @@ namespace MFI.Application
             return createdClient;
         }
 
-        private NotCreatedClientRequester CreateResultInvalidRequester(ClientRequester requester)
+        private NotCreatedClientRequester CreateResultInvalidRequester(
+            string email,
+            string name,
+            IList<object> warnings)
         {
             NotCreatedClientRequester createdClient = new NotCreatedClientRequester
             {
-                Email = requester?.Email,
-                Name = requester?.Name
+                Email = email,
+                Name = name
             };
-            createdClient.AddWarnings(requester.EventNotification.Warnings.Select(x => x.ToString()).ToList());
+            createdClient.AddWarnings(warnings.Select(x => x.ToString()).ToList());
             return createdClient;
         }
     }

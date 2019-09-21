@@ -101,16 +101,15 @@ namespace MFI.Domain.Entities
 
         public void ValidadeToCreation()
         {
-            TestCondition(string.IsNullOrEmpty(this.Email), WarningEmptyEmail);
+            TestCondition((this.Email.IsNullOrEmpty()), WarningEmptyEmail);
             TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);
 
-            TestCondition(string.IsNullOrEmpty(this.Password), WarningEmptyPassword);
+            TestCondition(this.Password.IsNullOrEmpty(), WarningEmptyPassword);
             TestCondition(
-                (this.Password ?? string.Empty).Length < PasswordWhithoutEncriptMinLength,
+                this.Password.LengthLessThan(PasswordWhithoutEncriptMinLength),
                 WarningPasswordWithoutEncriptLessThanMinimun);
             TestCondition(
-                (this.Password ?? string.Empty).Length >
-                PasswordWhithoutEncriptMaxLength,
+                this.Password.LengthGreatherThan(PasswordWhithoutEncriptMaxLength),
                 WarningPasswordWithoutEncriptGreatherMaximun);
         }
     }

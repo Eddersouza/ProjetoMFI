@@ -56,17 +56,12 @@ namespace MFI.Domain.Entities
             this.User = user;
 
             CreatedByUserId = user.UserId.ToString();
-
-            //TestCondition(string.IsNullOrEmpty(this.Email), WarningEmptyEmail);
-            //TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);
-
-            //TestCondition(string.IsNullOrEmpty(this.Name), WarningEmptyName);
-            //TestCondition((this.Name ?? string.Empty).Length < NameMinLength, WarningNameLessThanMinimun);
-            //TestCondition((this.Name ?? string.Empty).Length > NameMaxLength, WarningNameGreatherMaximun);
         }
 
         public Guid ClientId { get; set; }
+
         public string Email { get; set; }
+
         public string Name { get; set; }
 
         public ClientType Type
@@ -76,7 +71,19 @@ namespace MFI.Domain.Entities
         }
 
         public string TypeCode { get; set; }
+
         public virtual User User { get; set; }
+
         public Guid UserId { get; set; }
+
+        public void ValidadeToCreation()
+        {
+            TestCondition(this.Email.IsNullOrEmpty(), WarningEmptyEmail);
+            TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);
+
+            TestCondition(this.Name.IsNullOrEmpty(), WarningEmptyName);
+            TestCondition(this.Name.LengthLessThan(NameMinLength), WarningNameLessThanMinimun);
+            TestCondition(this.Name.LengthGreatherThan(NameMaxLength), WarningNameGreatherMaximun);
+        }
     }
 }
