@@ -172,6 +172,10 @@
       <Project>{A7EBB118-6A6A-46B1-81BA-DA5EBFE59B91}</Project>
       <Name>MFI.IoC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MFI.Utils\MFI.Utils.csproj">
+      <Project>{E2478D2E-B386-47C5-9425-07651A41AEC2}</Project>
+      <Name>MFI.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

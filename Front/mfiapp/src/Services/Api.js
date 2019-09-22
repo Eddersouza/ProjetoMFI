@@ -1,8 +1,10 @@
 import axios from "axios";
+import { OpenToastError, OpenToastWarn } from '../Functions/Toast/Message'
+import  configMFI  from  '../config'
 //import { getToken } from "./auth";
 
 const Api = axios.create({
-    baseURL: "http://localhost:83"
+    baseURL: configMFI.apiGateway.URL_BASE
 });
 
 Api.interceptors.request.use(async config => {
@@ -18,9 +20,22 @@ Api.interceptors.response.use(function (response) {
     // Do something with response data
     return response;
 }, function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    return Promise.reject(error);
-});
 
-export default Api;
+    let obj = {
+        teste: "ok",
+        err: error
+    }
+    console.log(obj)
+    if (error.response) {
+        let errors = error.response.data
+        OpenToastWarn(errors.Warnings)
+    }
+    else {
+        let errors = []
+        errors.push("Ocorreu um erro ao executar a ação, tente novamente ou entre em contato com o administrador")
+        OpenToastError(errors)
+    }
+    return Promise.reject(error)
+})
+
+export default Api
