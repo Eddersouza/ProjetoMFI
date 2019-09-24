@@ -2,7 +2,7 @@ import React, { Component, createContext } from 'react'
 
 export const DialogsContext = createContext()
 
-export class DialogsContextProvider extends Component {
+class DialogsContextProvider extends Component {
 
     state = {
         dialogEnterOrCreateOpen: false

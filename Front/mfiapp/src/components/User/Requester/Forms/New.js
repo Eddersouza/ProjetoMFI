@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { OpenToastSuccess } from '../../../../Functions/Toast/Message'
 import { withRouter } from 'react-router-dom';
@@ -13,12 +13,15 @@ import {
     Row,
     Col
 } from 'reactstrap';
+import { BlockContext } from '../../../../Contexts/Block';
 
 const UserRequesterFormNew = (props) => {
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
+
+    const { blockPage, unBlockPage } = useContext(BlockContext)
 
     const clearFields = () => {
         setPassword('')
@@ -33,7 +36,7 @@ const UserRequesterFormNew = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
+        blockPage()
         const data = {
             Email: email,
             Name: name,
@@ -41,11 +44,13 @@ const UserRequesterFormNew = (props) => {
         }
         if (passwordConfirm === password) {
             Api.post('mfiapi/requester', data)
-                .then(function (response) {                
+                .then(function (response) {
                     let successMessages = []
                     successMessages.push('Cliente cadastrado com Sucesso.')
                     OpenToastSuccess(successMessages)
-                })
+                }).finally(function () {
+                    unBlockPage()
+                });
         }
     }
 
