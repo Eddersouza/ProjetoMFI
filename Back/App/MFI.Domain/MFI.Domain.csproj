@@ -40,6 +40,7 @@
     <Compile Include="Contracts\Repositories\UserRepositoryContract.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\ClientRequester.cs" />
+    <Compile Include="Entities\ClientProvider.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\ClientType.cs" />

@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Contexts\MFIEFContext.cs" />
     <Compile Include="EntityMap\ClientMap.cs" />
+    <Compile Include="EntityMap\ClientProviderMap.cs" />
     <Compile Include="EntityMap\ClientRequesterMap.cs" />
     <Compile Include="EntityMap\UserMap.cs" />
     <Compile Include="Migrations\201909150106204_initialDBAndUser.cs" />
