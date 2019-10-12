@@ -18,6 +18,7 @@ namespace MFI.Data.EF.Contexts
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new ClientMap());
             modelBuilder.Configurations.Add(new ClientRequesterMap());
+            modelBuilder.Configurations.Add(new ClientProviderMap());
         }
     }
 }

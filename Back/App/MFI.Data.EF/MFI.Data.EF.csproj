@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201909151352256_addClientRequester.Designer.cs">
       <DependentUpon>201909151352256_addClientRequester.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910122308323_addClientProvider.cs" />
+    <Compile Include="Migrations\201910122308323_addClientProvider.Designer.cs">
+      <DependentUpon>201910122308323_addClientProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\BaseRepository.cs" />
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909151352256_addClientRequester.resx">
       <DependentUpon>201909151352256_addClientRequester.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910122308323_addClientProvider.resx">
+      <DependentUpon>201910122308323_addClientProvider.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
