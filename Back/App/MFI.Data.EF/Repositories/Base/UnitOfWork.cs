@@ -11,22 +11,25 @@ namespace MFI.Data.EF.Repositories.Base
         private readonly MFIEFContext _context;
         private DbContextTransaction _dbTransaction;
 
-        private readonly UserRepositoryContract _userRepository;
+        private readonly ClientProviderRepositoryContract _clientProviderRepository;
         private readonly ClientRequesterRepositoryContract _clientRequesterRepository;
+        private readonly UserRepositoryContract _userRepository;
 
         public UnitOfWork(
             MFIEFContext context,
             UserRepositoryContract userRepository,
-            ClientRequesterRepositoryContract clientRequesterRepository)
+            ClientRequesterRepositoryContract clientRequesterRepository,
+            ClientProviderRepositoryContract clientProviderRepository)
         {
             this._context = context;
             this._userRepository = userRepository;
             this._clientRequesterRepository = clientRequesterRepository;
+            this._clientProviderRepository = clientProviderRepository;
         }
 
-        public UserRepositoryContract User => _userRepository;
-
+        public ClientProviderRepositoryContract ClientProvider => _clientProviderRepository;
         public ClientRequesterRepositoryContract ClientRequester => _clientRequesterRepository;
+        public UserRepositoryContract User => _userRepository;
 
         public void BeginTransaction()
         {

@@ -99,7 +99,7 @@ namespace MFI.Domain.Entities
                 this.Password = this.Password.Encrypt(string.Format(this.UserId.ToString()));
         }
 
-        public void ValidadeToCreation()
+        public virtual void ValidadeToCreation()
         {
             TestCondition((this.Email.IsNullOrEmpty()), WarningEmptyEmail);
             TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);

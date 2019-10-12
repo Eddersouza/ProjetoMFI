@@ -76,7 +76,7 @@ namespace MFI.Domain.Entities
 
         public Guid UserId { get; set; }
 
-        public void ValidadeToCreation()
+        public virtual void ValidadeToCreation()
         {
             TestCondition(this.Email.IsNullOrEmpty(), WarningEmptyEmail);
             TestCondition(!this.Email.IsEmail(), WarningInvalidEmailPattern);

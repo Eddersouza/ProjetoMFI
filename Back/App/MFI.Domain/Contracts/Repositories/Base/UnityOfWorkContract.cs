@@ -2,15 +2,16 @@
 {
     public interface UnityOfWorkContract
     {
-        UserRepositoryContract User { get; }
+        ClientProviderRepositoryContract ClientProvider { get; }
         ClientRequesterRepositoryContract ClientRequester { get; }
+        UserRepositoryContract User { get; }
 
         void BeginTransaction();
-
-        void SaveChanges();
 
         void Commit();
 
         void Rowback();
+
+        void SaveChanges();
     }
 }

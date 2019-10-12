@@ -35,10 +35,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\MFIResult.cs" />
+    <Compile Include="ClientProviderApp.cs" />
     <Compile Include="ClientRequesterApp.cs" />
+    <Compile Include="Interfaces\ClientProviderAppContract.cs" />
     <Compile Include="Interfaces\ClientRequesterAppContract.cs" />
     <Compile Include="Base\MFIResultContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Clients\Providers\CreateClientProvider.cs" />
+    <Compile Include="ViewModels\Clients\Providers\CreatedClientProvider.cs" />
+    <Compile Include="ViewModels\Clients\Providers\NotCreatedClientProvider.cs" />
     <Compile Include="ViewModels\Clients\Requesters\CreateClientRequester.cs" />
     <Compile Include="ViewModels\Clients\Requesters\NotCreatedClientRequester.cs" />
     <Compile Include="ViewModels\Clients\Requesters\CreatedClientRequester.cs" />
