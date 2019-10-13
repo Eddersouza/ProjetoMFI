@@ -7,8 +7,9 @@ import {
     Row
 } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import UserProviderFormNew from '../../../components/User/Provider/Forms/New'
 
 const UserProviderCreatePage = (props) => {
     const returnLastPage = () => {
@@ -38,7 +39,7 @@ const UserProviderCreatePage = (props) => {
                 <Col md={12}>
                     <Card>
                         <CardBody>
-                            {/* <UserRequesterFormNew /> */}
+                            <UserProviderFormNew /> 
                         </CardBody>
                     </Card>
                 </Col>
