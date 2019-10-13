@@ -26,6 +26,7 @@ namespace MFI.IoC
             Lifestyle lifestyle)
         {
             container.Register<ClientRequesterAppContract, ClientRequesterApp>(lifestyle);
+            container.Register<ClientProviderAppContract, ClientProviderApp>(lifestyle);
         }
 
         private static void RegisterRepositories(
