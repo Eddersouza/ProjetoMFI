@@ -6,9 +6,17 @@ import {
     Col,
     Button
 } from 'reactstrap'
+import { withRouter } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const UserTypeChooseProvider = () => {
+const UserTypeChooseProvider = (props) => {
+
+    const goToNewCreateProviderUser = () => {
+        let path = `/usuario/fornecedor/novo`
+        props.history.push(path)
+    }
+
     return (
         <Card>
             <CardBody>
@@ -29,7 +37,7 @@ const UserTypeChooseProvider = () => {
                 </Row>
                 <Row>
                     <Col md={12} className="text-center">
-                        <Button type="button" outline color="secondary" size="lg" block>
+                        <Button type="button" outline color="secondary" onClick={goToNewCreateProviderUser}  size="lg" block>
                             <FontAwesomeIcon className="text-secondary" icon={["far","hand-point-right"]} />&nbsp;
                                 Entre aqui
                         </Button>
@@ -40,4 +48,4 @@ const UserTypeChooseProvider = () => {
     );
 }
 
-export default UserTypeChooseProvider
+export default withRouter(UserTypeChooseProvider)

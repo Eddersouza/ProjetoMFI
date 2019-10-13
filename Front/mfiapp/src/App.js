@@ -22,9 +22,12 @@ import NavBarTop from './Screens/Shared/Header/NavbarTop'
 import PageNotFound from './Screens/Error/NotFound';
 import UserTypeChoose from './Screens/User/Type/Choose'
 import UserRequesterCreatePage from './Screens/User/Requester/Create';
+import UserProviderCreatePage from './Screens/User/Provider/Create';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BlockContextProvider from './Contexts/Block'
+
 library.add(faBan, faCheck, faEraser, faHandPointRight, faReply, faSave, faQuestion, faTimes, faExclamation)
 
 function App() {
@@ -39,6 +42,7 @@ function App() {
                 <Route exact path="/" component={HomePage} />
                 <Route path="/usuario/escolher" component={UserTypeChoose} />
                 <Route path="/usuario/cliente/novo" component={UserRequesterCreatePage} />
+                <Route path="/usuario/fornecedor/novo" component={UserProviderCreatePage} />
                 <Route component={PageNotFound} />
               </Switch>
               <ToastContainer />
