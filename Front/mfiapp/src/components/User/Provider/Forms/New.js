@@ -78,7 +78,12 @@ const UserProviderFormNew = (props) => {
             <Row>
                 <Col md={6} xs={12}>
                     <FormGroup className="">
-                        <Label className='control-label' for="txtCompanyName">Razão Social <span className='small font-italic'>(opcional, apenas se tiver empresa registrada)</span></Label>
+                        <Label className='control-label'
+                            for="txtCompanyName">Razão Social
+                            <span className='small font-italic'>
+                                (opcional, apenas se tiver empresa registrada)
+                            </span>
+                        </Label>
                         <Input id="txtCompanyName"
                             name="companyName"
                             onChange={e => setCompanyName(e.target.value)}
@@ -86,7 +91,7 @@ const UserProviderFormNew = (props) => {
                             type="text"
                             value={companyName} />
                     </FormGroup>
-                </Col>            
+                </Col>
                 <Col md={6} xs={12}>
                     <FormGroup className="required">
                         <Label className='control-label' for="txtName">Nome</Label>
