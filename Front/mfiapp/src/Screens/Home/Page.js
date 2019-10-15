@@ -1,8 +1,10 @@
 import React from 'react'
+import ListProviderCard from '../../components/User/Provider/ListCard'
 
 const HomePage = () => {
     return (<div>
-        Home Page
+        <br />
+        <ListProviderCard />
     </div>)
 }
 
