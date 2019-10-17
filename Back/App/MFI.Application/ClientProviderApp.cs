@@ -63,6 +63,20 @@ namespace MFI.Application
             return CreateNewProvider(provider);
         }
 
+        public MFIResult ListCardsProvider()
+        {
+            CardsProviderView view = new CardsProviderView();
+
+            var list = _unityOfWork.ClientProvider.Get().ToList();
+
+            foreach (var item in list)
+            {
+                view.Items.Add(new CardProviderView(item));
+            }
+
+            return view;
+        }
+
         private MFIResult CreateNewProvider(
             ClientProvider provider)
         {

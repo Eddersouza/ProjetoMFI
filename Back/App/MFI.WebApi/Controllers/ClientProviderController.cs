@@ -40,5 +40,17 @@ namespace MFI.WebApi.Controllers
 
             return new BadRequestResult("Erro ao criar Fornecedor", Request, requester);
         }
+
+
+        /// <summary>
+        /// List Clients Providers.
+        /// </summary>
+        /// <returns>List cards with Provider Data.</returns>
+        [HttpGet]
+        [SwaggerResponse(HttpStatusCode.OK, "List cards to Providers.", typeof(CardsProviderView))]
+        public IHttpActionResult GetCards()
+        {
+            return Ok(_clientProviderApp.ListCardsProvider());
+        }
     }
 }

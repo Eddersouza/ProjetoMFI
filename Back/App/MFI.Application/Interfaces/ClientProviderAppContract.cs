@@ -7,5 +7,7 @@ namespace MFI.Application.Interfaces
     {
         MFIResult Create(
            CreateClientProvider client);
+
+        MFIResult ListCardsProvider();
     }
 }
