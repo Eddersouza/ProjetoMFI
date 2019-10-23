@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFI.Utils", "App\MFI.Utils\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "edrsys.EventNotification", "..\..\..\edrsys_EventNotification\edrsys.EventNotification\edrsys.EventNotification.csproj", "{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFI.WebAppMVC", "App\MFI.WebAppMVC\MFI.WebAppMVC.csproj", "{CF975F97-985B-4ABD-A15F-33D1329730F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF975F97-985B-4ABD-A15F-33D1329730F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF975F97-985B-4ABD-A15F-33D1329730F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF975F97-985B-4ABD-A15F-33D1329730F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF975F97-985B-4ABD-A15F-33D1329730F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{BB9DD3A9-CE58-4636-B5C7-A21C87E15ADB} = {32C68412-4358-4CC4-B10E-157DB7902FA8}
 		{E2478D2E-B386-47C5-9425-07651A41AEC2} = {B1269535-78F9-4212-845A-03B91913FD47}
 		{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D} = {B1269535-78F9-4212-845A-03B91913FD47}
+		{CF975F97-985B-4ABD-A15F-33D1329730F8} = {B2EFC176-FF7D-48E0-9E47-BA4AA44A4644}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A55B90D1-5FA2-4E85-87B2-C6DB7E3307CD}
