@@ -14,9 +14,37 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><button type="button" class="btn btn-secondary btn-lg btn150">Entrar</button></li>
+                <li>
+                    <button class="btn btn-secondary btn-lg btn150"
+                            data-toggle="modal"
+                            data-target="#choose-client-type"
+                            type="button">
+                        Entrar
+                    </button>
+                </li>
                 <li>&nbsp;&nbsp;&nbsp;</li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<div class="modal fade" id="choose-client-type" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">O que voce deseja? </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        @Html.Partial("_LogIn")
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        @Html.Partial("_ChooseCreateUser")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
