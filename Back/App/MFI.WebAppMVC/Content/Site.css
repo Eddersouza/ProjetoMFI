@@ -6,3 +6,15 @@
 .btn150 {
     width: 150px
 }
+
+.button180 {
+    margin: 3px;
+    width: 180px;
+}
+
+.form-group.required .control-label:after {
+    color: red;
+    content: "*";
+    position: absolute;
+    margin-left: 3px;
+}

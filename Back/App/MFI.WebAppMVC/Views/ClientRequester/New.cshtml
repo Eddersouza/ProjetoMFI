@@ -1,0 +1,161 @@
+﻿@using MFI.Application.ViewModels.Clients.Requesters
+
+@model CreateClientRequester
+
+@{
+    ViewBag.Title = "Novo Cliente";
+}
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading " ligth>
+                <h3 class="panel-title">
+                    <a class="btn btn-default" href="@Url.Action("ChooseType","User", null)"><i class="fas fa-reply"></i></a>&nbsp; Cliente
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="required form-group">
+                                <label for="txtEmail" class="control-label">Email:</label>
+                                <input class="form-control"
+                                       id="txtEmail"
+                                       name="email"
+                                       placeholder="Digite um email"
+                                       type="email"
+                                       value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="required form-group">
+                                <label for="txtName" class="control-label">Nome</label>
+                                <input class="form-control"
+                                       id="txtName"
+                                       name="name"
+                                       placeholder="Digite o nome"
+                                       type="text"
+                                       value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="required form-group">
+                                <label for="txtPassword" class="control-label">Senha</label>
+                                <input class="form-control"
+                                       id="txtPassword"
+                                       name="password"
+                                       placeholder="Digite sua senha"
+                                       type="password"
+                                       value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="required form-group">
+                                <label for="txtPassword" class="control-label">Confirme a Senha</label>
+                                <input class="form-control"
+                                       id="txtPasswordConfirm"
+                                       name="passwordConfirm"
+                                       placeholder="Digite sua senha"
+                                       type="password"
+                                       value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <a class="button180 btn btn-danger"
+                                   href="@Url.Action("Index","Home", null)"
+                                   title="Cancelar Criação de Cliente">
+                                    <i class="fas fa-ban">&nbsp;</i>Cancelar
+                                </a>
+                                <button class="button180 btn btn-secondary"
+                                        title="Limpar Campos"
+                                        type="button">
+                                    <i class="fas fa-eraser">&nbsp;</i>Limpar
+                                </button>
+                                <button class="button180 btn btn-success"
+                                        id="btnCreateRequester"
+                                        title="Criar Cliente"
+                                        type="button">
+                                    <i class="fas fa-save">&nbsp;</i>Criar Novo Cliente
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="urlNewClientRequester" type="hidden" value="@Url.Action("Create","ClientRequester")" />
+
+@section scripts{
+    <script>
+
+        function apiAjax(method, dataType, contentType, data, url) {
+            $.ajax({
+                contentType: contentType,
+                data: JSON.stringify(data),
+                dataType: dataType,
+                method: method,
+                url: url,
+            }).done(function (data, textStatus, jqXHR) {
+                alert("success");
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert("error");
+            }).always(function () {
+                alert("complete");
+            });
+        }
+
+        function btnCreateRequester_onClick() {
+            let urlNewClientRequester = $('#urlNewClientRequester').val();
+
+            let newRequesters = getNewRequesterData();
+
+            apiAjax('POST', 'json', 'application/json', newRequesters, urlNewClientRequester)
+        }
+
+        function getNewRequesterData() {
+            let fieldEmail = $('#txtEmail');
+            let fieldName = $('#txtName');
+            let fieldPassword = $('#txtPassword');
+            let fieldConfirmPassword = $('#txtPasswordConfirm');
+
+            let newRequesterData = {
+                Email: fieldEmail.val(),
+                Name: fieldName.val(),
+                Password: fieldPassword.val(),
+                PasswordConfirm: fieldConfirmPassword.val()
+            };
+
+            return newRequesterData;
+        }
+
+        function onDocumentReady() {
+            setActions();
+        }
+
+        function setActions() {
+            $('body').delegate('#btnCreateRequester', 'click', btnCreateRequester_onClick);
+        }
+
+
+        $(document).ready(onDocumentReady);
+
+    </script>
+}
