@@ -43,6 +43,7 @@ namespace MFI.WebApi.Controllers
             if (requester.HasSuccess)
                 return new CreatedRequestResult("Cliente criado com sucesso", Request, requester);
 
+            
 
             return new BadRequestResult("Erro ao criar Cliente", Request, requester);
         }
