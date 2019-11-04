@@ -106,7 +106,7 @@
 @section scripts{
     <script>
 
-        function apiAjax(method, dataType, contentType, data, url) {
+        function apiAjax(method, dataType, contentType, data, url, apiAjaxOnDone, apiAjaxOnFail) {
             $.ajax({
                 contentType: contentType,
                 data: JSON.stringify(data),
@@ -114,20 +114,34 @@
                 method: method,
                 url: url,
             }).done(function (data, textStatus, jqXHR) {
-                alert("success");
+
+                if (apiAjaxOnDone !== null)
+                    apiAjaxOnDone(data, textStatus, jqXHR);
+
             }).fail(function (jqXHR, textStatus, errorThrown) {
-                alert("error");
+                if (apiAjaxOnFail !== null)
+                    apiAjaxOnFail(jqXHR, textStatus, errorThrown);
             }).always(function () {
                 alert("complete");
             });
         }
 
-        function btnCreateRequester_onClick() {
+        function createNewRequester() {
             let urlNewClientRequester = $('#urlNewClientRequester').val();
 
             let newRequesters = getNewRequesterData();
 
-            apiAjax('POST', 'json', 'application/json', newRequesters, urlNewClientRequester)
+            apiAjax('POST', 'json', 'application/json', newRequesters, urlNewClientRequester, null, createNewRequesterAlert);
+        }
+
+        function createNewRequesterAlert(jqXHR, textStatus, errorThrown) {
+            let messages = jqXHR.responseJSON.Warnings || [];
+
+            dialogWarningShowMessages(messages);
+        }
+
+        function btnCreateRequester_onClick() {
+            createNewRequester();
         }
 
         function getNewRequesterData() {
@@ -153,7 +167,6 @@
         function setActions() {
             $('body').delegate('#btnCreateRequester', 'click', btnCreateRequester_onClick);
         }
-
 
         $(document).ready(onDocumentReady);
 
