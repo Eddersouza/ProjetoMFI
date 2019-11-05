@@ -83,6 +83,7 @@
                                     <i class="fas fa-ban">&nbsp;</i>Cancelar
                                 </a>
                                 <button class="button180 btn btn-secondary"
+                                        id="btnCleanRequester"
                                         title="Limpar Campos"
                                         type="button">
                                     <i class="fas fa-eraser">&nbsp;</i>Limpar
@@ -106,7 +107,7 @@
 @section scripts{
     <script>
 
-        function apiAjax(method, dataType, contentType, data, url, apiAjaxOnDone, apiAjaxOnFail) {
+        function apiAjax(method, dataType, contentType, data, url, apiAjaxOnDone, apiAjaxOnFail, apiAjaxOnComplete) {
             $.ajax({
                 contentType: contentType,
                 data: JSON.stringify(data),
@@ -114,16 +115,31 @@
                 method: method,
                 url: url,
             }).done(function (data, textStatus, jqXHR) {
-
                 if (apiAjaxOnDone !== null)
                     apiAjaxOnDone(data, textStatus, jqXHR);
-
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 if (apiAjaxOnFail !== null)
                     apiAjaxOnFail(jqXHR, textStatus, errorThrown);
             }).always(function () {
-                alert("complete");
+                if (apiAjaxOnComplete !== null)
+                    apiAjaxOnComplete();
             });
+        }
+
+        function btnCleanRequester_OnClick() {
+            cleanFields();
+            closeDialogs();
+        }
+
+        function btnCreateRequester_onClick() {
+            createNewRequester();
+        }
+
+        function cleanFields() {
+            $('#txtEmail').val('');
+            $('#txtName').val('');
+            $('#txtPassword').val('');
+            $('#txtPassword').val('');
         }
 
         function createNewRequester() {
@@ -131,17 +147,33 @@
 
             let newRequesters = getNewRequesterData();
 
-            apiAjax('POST', 'json', 'application/json', newRequesters, urlNewClientRequester, null, createNewRequesterAlert);
+            if (validPassword(newRequesters)) {
+                blockPage(true);
+
+                apiAjax('POST', 'json', 'application/json',
+                    newRequesters, urlNewClientRequester,
+                    createNewRequesterSuccess, createNewRequesterAlert, resultApiComplete);
+            }
         }
 
         function createNewRequesterAlert(jqXHR, textStatus, errorThrown) {
+            let status = jqXHR.status;
+
             let messages = jqXHR.responseJSON.Warnings || [];
 
-            dialogWarningShowMessages(messages);
+            if (status >= 400 && status < 500) {
+
+                dialogWarningShowMessages(messages);
+            }
+            else {
+                dialogErrorShowMessages(messages);
+            }
         }
 
-        function btnCreateRequester_onClick() {
-            createNewRequester();
+        function createNewRequesterSuccess() {
+            let messages = [];
+            messages.push('Cliente criado com sucesso.')
+            dialogSuccessShowMessages(messages);
         }
 
         function getNewRequesterData() {
@@ -165,7 +197,25 @@
         }
 
         function setActions() {
+            $('body').delegate('#btnCleanRequester', 'click', btnCleanRequester_OnClick);
             $('body').delegate('#btnCreateRequester', 'click', btnCreateRequester_onClick);
+        }
+
+        function resultApiComplete() {
+            blockPage(false);
+        }
+
+        function validPassword(requester) {
+            if (requester.Password !== requester.PasswordConfirm) {
+                let messages = [];
+                messages.push('O campo de Senha e Confirmação de Senha devem ser iguais.');
+
+                dialogWarningShowMessages(messages);
+
+                return false;
+            }
+
+            return true;
         }
 
         $(document).ready(onDocumentReady);

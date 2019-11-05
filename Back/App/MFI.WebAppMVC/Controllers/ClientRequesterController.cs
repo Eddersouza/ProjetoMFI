@@ -9,30 +9,46 @@ namespace MFI.WebAppMVC.Controllers
     public class ClientRequesterController : Controller
     {
         private readonly ClientRequesterAppContract _clientRequesterApp;
+
         public ClientRequesterController(
             ClientRequesterAppContract clientRequesterApp)
         {
             _clientRequesterApp = clientRequesterApp;
         }
 
-        [Route("Novo")]
-        public ActionResult New()
-        {
-            return View();
-        }
-
         [HttpPost]
         [Route("")]
         public JsonResult Create(CreateClientRequester create)
         {
-            MFIResultContract requester = _clientRequesterApp.Create(create);
+            MFIResultContract result = null;
+            try
+            {
+                result = _clientRequesterApp.Create(create);
 
-            if (requester.HasSuccess)
-                return Json(requester);
+                if (result.HasSuccess)
+                    return Json(result);
 
-            Response.StatusCode = 400;
+                Response.StatusCode = 400;
 
-            return Json(requester);
+                return Json(result);
+            }
+            catch
+            {
+                result = new MFIResult();
+
+                result.AddWarning("Ocorreu um erro ao executar a ação.");
+                result.AddWarning("Tente novamente ou entre em contato com o administrador.");
+
+                Response.StatusCode = 500;
+
+                return Json(result);
+            }
+        }
+
+        [Route("Novo")]
+        public ActionResult New()
+        {
+            return View();
         }
     }
 }
