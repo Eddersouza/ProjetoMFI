@@ -1,10 +1,8 @@
-﻿@using MFI.Application.ViewModels.Clients.Requesters
-
-@model CreateClientRequester
-
+﻿
 @{
-    ViewBag.Title = "Novo Cliente";
+    ViewBag.Title = "Novo Fornecedor";
 }
+
 
 <br />
 <div class="row">
@@ -12,13 +10,16 @@
         <div class="panel panel-default">
             <div class="panel-heading " ligth>
                 <h3 class="panel-title">
-                    <a class="btn btn-default" href="@Url.Action("ChooseType","User", null)"><i class="fas fa-reply"></i></a>&nbsp; Cliente
+                    <a class="btn btn-default" href="@Url.Action("ChooseType","User", null)">
+                        <i class="fas fa-reply"></i>
+                    </a>&nbsp; Fornecedor
                 </h3>
             </div>
         </div>
     </div>
 </div>
 <div class="row">&nbsp;</div>
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -38,7 +39,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-12 col-md-6">
                             <div class="required form-group">
                                 <label for="txtName" class="control-label">Nome</label>
                                 <input class="form-control"
@@ -47,6 +48,31 @@
                                        placeholder="Digite o nome"
                                        type="text"
                                        value="">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="txtCompanyName" class="control-label">
+                                    Razão Social
+                                    <span class="small font-italic">(opcional, apenas se tiver empresa registrada)</span>
+                                </label>
+                                <input class="form-control"
+                                       id="txtCompanyName"
+                                       name="companyName"
+                                       placeholder="Digite a Razão Social"
+                                       type="text"
+                                       value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="required form-group">
+                                <label for="txtDescription" class="control-label">Sobre você:</label>
+                                <textarea class="form-control"
+                                          id="txtDescription"
+                                          name="description"
+                                          placeholder="Digite algumas palavras sobre você/seu trabalho"></textarea>
                             </div>
                         </div>
                     </div>
@@ -79,20 +105,20 @@
                             <div class="form-group">
                                 <a class="button180 btn btn-danger"
                                    href="@Url.Action("Index","Home", null)"
-                                   title="Cancelar Criação de Cliente">
+                                   title="Cancelar Criação de Fornecedor">
                                     <i class="fas fa-ban">&nbsp;</i>Cancelar
                                 </a>
                                 <button class="button180 btn btn-secondary"
-                                        id="btnCleanRequester"
+                                        id="btnCleanProvider"
                                         title="Limpar Campos"
                                         type="button">
                                     <i class="fas fa-eraser">&nbsp;</i>Limpar
                                 </button>
                                 <button class="button180 btn btn-success"
-                                        id="btnCreateRequester"
-                                        title="Criar Cliente"
+                                        id="btnCreateProvider"
+                                        title="Criar Fornecedor"
                                         type="button">
-                                    <i class="fas fa-save">&nbsp;</i>Criar Novo Cliente
+                                    <i class="fas fa-save">&nbsp;</i>Criar Novo Fornecedor
                                 </button>
                             </div>
                         </div>
@@ -102,8 +128,7 @@
         </div>
     </div>
 </div>
-<input id="urlNewClientRequester" type="hidden" value="@Url.Action("Create","ClientRequester")" />
 
 @section scripts{
-    <script src="~/Scripts/pages/requester/newrequester.js"></script>
+    <script src="~/Scripts/pages/requester/new-provider.js"></script>
 }
