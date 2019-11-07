@@ -29,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="required form-group">
                                 <label for="txtEmail" class="control-label">Email:</label>
-                                <input class="form-control"
+                                <input class="form-control new-requester-form"
                                        id="txtEmail"
                                        name="email"
                                        placeholder="Digite um email"
@@ -42,7 +42,7 @@
                         <div class="col-12 col-md-6">
                             <div class="required form-group">
                                 <label for="txtName" class="control-label">Nome</label>
-                                <input class="form-control"
+                                <input class="form-control new-requester-form"
                                        id="txtName"
                                        name="name"
                                        placeholder="Digite o nome"
@@ -56,7 +56,7 @@
                                     Razão Social
                                     <span class="small font-italic">(opcional, apenas se tiver empresa registrada)</span>
                                 </label>
-                                <input class="form-control"
+                                <input class="form-control new-requester-form"
                                        id="txtCompanyName"
                                        name="companyName"
                                        placeholder="Digite a Razão Social"
@@ -69,7 +69,7 @@
                         <div class="col-md-12">
                             <div class="required form-group">
                                 <label for="txtDescription" class="control-label">Sobre você:</label>
-                                <textarea class="form-control"
+                                <textarea class="form-control new-requester-form"
                                           id="txtDescription"
                                           name="description"
                                           placeholder="Digite algumas palavras sobre você/seu trabalho"></textarea>
@@ -80,7 +80,7 @@
                         <div class="col-md-6">
                             <div class="required form-group">
                                 <label for="txtPassword" class="control-label">Senha</label>
-                                <input class="form-control"
+                                <input class="form-control new-requester-form"
                                        id="txtPassword"
                                        name="password"
                                        placeholder="Digite sua senha"
@@ -91,7 +91,7 @@
                         <div class="col-md-6">
                             <div class="required form-group">
                                 <label for="txtPassword" class="control-label">Confirme a Senha</label>
-                                <input class="form-control"
+                                <input class="form-control new-requester-form"
                                        id="txtPasswordConfirm"
                                        name="passwordConfirm"
                                        placeholder="Digite sua senha"
@@ -128,6 +128,7 @@
         </div>
     </div>
 </div>
+<input id="urlNewClientProvider" type="hidden" value="@Url.Action("Create","ClientProvider")" />
 
 @section scripts{
     <script src="~/Scripts/pages/requester/new-provider.js"></script>
