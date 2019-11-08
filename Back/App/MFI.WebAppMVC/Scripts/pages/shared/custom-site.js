@@ -26,3 +26,19 @@ function blockPage(block) {
         $.unblockUI();
     }
 }
+
+function getObjectJSONFromForm(fieldClassName) {
+    let formElements = $(fieldClassName);
+
+    let newObjectForm = {};
+
+    for (var i = 0; i < formElements.length; i++) {
+        newObjectForm[formElements[i].name] = formElements[i].value;
+    }
+
+    return newObjectForm;
+}
+
+function resultApiComplete() {
+    blockPage(false);
+}

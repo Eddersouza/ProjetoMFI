@@ -1,13 +1,40 @@
 ﻿function btnCreateProvider_OnClick() {
-    let formElements = $('.new-requester-form');
+    createNewProvider();
+}
 
-    let newObjectForm = {};
+function createNewProvider() {
+    let urlNewClientProvider = $('#urlNewClientProvider').val();
 
-    for (var i = 0; i < formElements.length; i++) {
-        newObjectForm[formElements[i].name] = formElements[i].value;
+    let newProvider = getObjectJSONFromForm('.new-requester-form');
+
+    if (validPassword(newProvider)) {
+        blockPage(true);
+
+        apiAjax('POST', 'json', 'application/json',
+            newProvider, urlNewClientProvider,
+            createNewProviderSuccess, createNewProviderAlert, resultApiComplete);
     }
 }
 
+function createNewProviderAlert(jqXHR, textStatus, errorThrown) {
+    let status = jqXHR.status;
+
+    let messages = jqXHR.responseJSON.Warnings || [];
+
+    if (status >= 400 && status < 500) {
+
+        dialogWarningShowMessages(messages);
+    }
+    else {
+        dialogErrorShowMessages(messages);
+    }
+}
+
+function createNewProviderSuccess() {
+    let messages = [];
+    messages.push('Cliente criado com sucesso.');
+    dialogSuccessShowMessages(messages);
+}
 
 function onDocumentNewProviderReady() {
     setNewRequestActions();
@@ -15,6 +42,19 @@ function onDocumentNewProviderReady() {
 
 function setNewRequestActions() {
     $('body').delegate('#btnCreateProvider', 'click', btnCreateProvider_OnClick);
+}
+
+function validPassword(requester) {
+    if (requester.password !== requester.passwordConfirm) {
+        let messages = [];
+        messages.push('O campo de Senha e Confirmação de Senha devem ser iguais.');
+
+        dialogWarningShowMessages(messages);
+
+        return false;
+    }
+
+    return true;
 }
 
 $(document).ready(onDocumentNewProviderReady);

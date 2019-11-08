@@ -44,7 +44,7 @@ function createNewRequesterAlert(jqXHR, textStatus, errorThrown) {
 
 function createNewRequesterSuccess() {
     let messages = [];
-    messages.push('Cliente criado com sucesso.')
+    messages.push('Cliente criado com sucesso.');
     dialogSuccessShowMessages(messages);
 }
 
@@ -71,10 +71,6 @@ function onDocumentReady() {
 function setActions() {
     $('body').delegate('#btnCleanRequester', 'click', btnCleanRequester_OnClick);
     $('body').delegate('#btnCreateRequester', 'click', btnCreateRequester_onClick);
-}
-
-function resultApiComplete() {
-    blockPage(false);
 }
 
 function validPassword(requester) {
