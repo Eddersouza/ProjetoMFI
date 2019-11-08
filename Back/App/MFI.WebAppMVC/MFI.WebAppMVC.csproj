@@ -1802,6 +1802,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\pages\provider\new-provider.js" />
+    <Content Include="Scripts\pages\provider\provider-list.js" />
     <Content Include="Scripts\pages\requester\new-requester.js" />
     <Content Include="Scripts\pages\shared\custom-dialog.js" />
     <Content Include="Scripts\pages\shared\custom-site.js" />
