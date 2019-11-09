@@ -16,6 +16,17 @@ namespace MFI.WebAppMVC.Controllers
             this._clientProviderApp = clientProviderApp;
         }
 
+        [HttpGet]
+        [Route("Cards")]
+        public PartialViewResult Cards()
+        {
+            MFIResultContract result = null;
+
+            result = _clientProviderApp.ListCardsProvider();
+            return PartialView("_ProviderCardList", result);
+
+        }
+
         [HttpPost]
         [Route("")]
         public JsonResult Create(
@@ -53,29 +64,5 @@ namespace MFI.WebAppMVC.Controllers
             return View();
         }
 
-        [HttpGet]
-        [Route("")]
-        public JsonResult Cards()
-        {
-            MFIResultContract result = null;
-            try
-            {
-                result = _clientProviderApp.ListCardsProvider();
-                
-                return Json(result);
-            }
-            catch
-            {
-                result = new MFIResult();
-
-                result.AddWarning("Ocorreu um erro ao executar a ação.");
-                result.AddWarning("Tente novamente ou entre em contato com o administrador.");
-
-                Response.StatusCode = 500;
-
-                return Json(result);
-            }
-        }
-    }
     }
 }

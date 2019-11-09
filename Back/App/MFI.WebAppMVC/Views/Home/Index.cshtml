@@ -1,6 +1,11 @@
 ﻿@{
     ViewBag.Title = "Buscar Fornecedores Para Festa";
 }
+<br />
+<div id="div-card-provider"></div>
+
+<input id="urlClientProviderCardList" type="hidden" value="@Url.Action("Cards","ClientProvider")" />
+
 
 @section scripts{
     <script src="~/Scripts/pages/provider/provider-list.js"></script>

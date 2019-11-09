@@ -1,0 +1,25 @@
+﻿@using MFI.Application.ViewModels.Clients.Providers
+
+@model CardsProviderView
+
+
+<div>
+    @foreach (var card in Model.Items)
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">@card.Name</div>
+                @if (!string.IsNullOrEmpty(card.CompanyName))
+                {
+                    <div class="card-subtitle">@card.CompanyName</div>
+                }
+            </div>
+            <div class="panel-body">
+                <p>
+                    @card.Description
+                </p>
+            </div>
+        </div>
+        <br />
+    }
+</div>
