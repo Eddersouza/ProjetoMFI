@@ -47,6 +47,7 @@
     <Compile Include="ViewModels\Clients\Providers\CreatedClientProvider.cs" />
     <Compile Include="ViewModels\Clients\Providers\NotCreatedClientProvider.cs" />
     <Compile Include="ViewModels\Clients\Requesters\CreateClientRequester.cs" />
+    <Compile Include="ViewModels\Clients\Requesters\LoginRequester.cs" />
     <Compile Include="ViewModels\Clients\Requesters\NotCreatedClientRequester.cs" />
     <Compile Include="ViewModels\Clients\Requesters\CreatedClientRequester.cs" />
   </ItemGroup>

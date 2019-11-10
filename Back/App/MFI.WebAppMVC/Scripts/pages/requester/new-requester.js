@@ -46,6 +46,34 @@ function createNewRequesterSuccess() {
     let messages = [];
     messages.push('Cliente criado com sucesso.');
     dialogSuccessShowMessages(messages);
+
+    let urlLogin = $('#urlLogin').val();
+
+    let user = getNewRequesterData();
+
+    post_to_url(urlLogin, user, 'POST');
+}
+
+function post_to_url(path, params, method) {
+    method = method || "post";
+
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
 }
 
 function getNewRequesterData() {

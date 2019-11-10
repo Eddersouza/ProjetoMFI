@@ -7,5 +7,9 @@ namespace MFI.Application.Interfaces
     {
         MFIResult Create(
             CreateClientRequester client);
+
+        MFIResult Login(
+            string email,
+            string password);
     }
 }
