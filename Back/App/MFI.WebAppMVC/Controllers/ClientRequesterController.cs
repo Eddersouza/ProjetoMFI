@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace MFI.WebAppMVC.Controllers
 {
     [RoutePrefix("Cliente")]
-    public class ClientRequesterController : Controller
+    public class ClientRequesterController : BaseController
     {
         private readonly ClientRequesterAppContract _clientRequesterApp;
 

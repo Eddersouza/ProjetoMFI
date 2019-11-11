@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace MFI.WebAppMVC.Controllers
 {
     [RoutePrefix("Fornecedor")]
-    public class ClientProviderController : Controller
+    public class ClientProviderController : BaseController
     {
         private readonly ClientProviderAppContract _clientProviderApp;
 

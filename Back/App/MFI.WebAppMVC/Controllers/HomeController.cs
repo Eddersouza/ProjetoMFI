@@ -1,14 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace MFI.WebAppMVC.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         [AllowAnonymous]
         public ActionResult Index()
         {
-            var test = HttpContext.User.Identity;
             return View();
         }
     }

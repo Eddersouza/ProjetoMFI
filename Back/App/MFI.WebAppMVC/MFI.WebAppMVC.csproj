@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SimpleInjectorConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientProviderController.cs" />
     <Compile Include="Controllers\ClientRequesterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

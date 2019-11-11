@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace MFI.WebAppMVC.Controllers
 {
     [RoutePrefix("Usuario")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly ClientRequesterAppContract _clientRequesterApp;
 
@@ -32,15 +32,14 @@ namespace MFI.WebAppMVC.Controllers
         {
             MFIResult result = _clientRequesterApp.Login(email, password);
 
-            if (true)
-            {
-                if (result.HasSuccess)
-                {
-                    LoginRequester requester = result as LoginRequester;
 
-                    CookieHelper.Set(requester.User, HttpContext);
-                }
+            if (result.HasSuccess)
+            {
+                LoginRequester requester = result as LoginRequester;
+
+                CookieHelper.Set(requester.User, HttpContext);
             }
+
 
             return RedirectToAction("Index", "Home");
         }

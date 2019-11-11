@@ -1,13 +1,13 @@
 ﻿
 <p class="lead">Entrar no sistema: </p>
 <div class="well">
-    <form id="loginForm" novalidate="" class="" _lpchecked="1">
+    <form action="@Url.Action("Login", "User")" id="loginForm" method="post" novalidate="">
         <div class="form-group">
             <label class="control-label" for="username">Email</label>
             <input autocomplete="off"
                    class="form-control form-control"
                    id="username"
-                   name="username"
+                   name="email"
                    placeholder="meuemail@gmail.com"
                    title="Digite o seu email"
                    type="text">
@@ -23,6 +23,6 @@
                    type="password"
                    title="Digite sua Senha">
 
-        </div><button class="btn btn-success btn-block btn btn-secondary">Entrar</button>
+        </div><button type="submit" class="btn btn-success btn-block btn btn-secondary">Entrar</button>
     </form>
 </div>
