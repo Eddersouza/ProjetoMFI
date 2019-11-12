@@ -11,10 +11,10 @@ namespace MFI.WebAppMVC.Controllers
     [RoutePrefix("Usuario")]
     public class UserController : BaseController
     {
-        private readonly ClientRequesterAppContract _clientRequesterApp;
+        private readonly UserAppContract _clientRequesterApp;
 
         public UserController(
-            ClientRequesterAppContract clientRequesterApp)
+            UserAppContract clientRequesterApp)
         {
             _clientRequesterApp = clientRequesterApp;
         }
@@ -30,7 +30,7 @@ namespace MFI.WebAppMVC.Controllers
             string password,
             ClientType? clientType)
         {
-            MFIResult result = _clientRequesterApp.Login(email, password);
+            MFIResult result = _clientRequesterApp.Login(email, password, clientType);
 
 
             if (result.HasSuccess)

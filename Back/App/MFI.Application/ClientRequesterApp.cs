@@ -53,39 +53,7 @@ namespace MFI.Application
 
             return CreateNewRequester(requester);
         }
-
-        public MFIResult Login(
-                    string email,
-            string password)
-        {
-            ClientRequester client = _unityOfWork.ClientRequester.Get(user => user.Email == email).FirstOrDefault();
-
-            LoginRequester loginRequester = null;
-
-            if (client != null)
-            {
-                User loginClient = null;
-                loginClient = new User { Email = email, Password = password, UserId = client.User.UserId };
-                loginClient.EncriptPassword();
-
-                loginRequester = new LoginRequester();
-
-                if (client.User.Password == loginClient.Password)
-                    loginRequester.User = new SystemUser
-                    {
-                        UserEmail = client.Email,
-                        UserName = client.Name,
-                        UserId = client.ClientId.ToString(),
-                        Roles = new string[] { client.Type.ToString() }
-                    };
-                else
-                    loginRequester.Warnings.Add("Usuário ou Senha Inválidos.");
-
-            }
-
-            return loginRequester;
-        }
-
+             
         private CreatedClientRequester CreateNewRequester(ClientRequester requester)
         {
             CreatedClientRequester createdClient;
