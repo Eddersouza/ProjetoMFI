@@ -1,5 +1,6 @@
 ﻿@{
     bool isAuthenticated = ViewBag.IsAuthenticated ?? false;
+    string userName = ViewBag.Name ?? string.Empty;
 }
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -27,6 +28,12 @@
                                 type="button">
                             Entrar
                         </button>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <i class="fas fa-user">@userName</i>
                     </li>
                 }
                 <li>&nbsp;&nbsp;&nbsp;</li>

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Quero Fazer Festa</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 </head>
 <body>
     <div id="domMessage" style="display:none;">
@@ -62,7 +63,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/customsite")
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
