@@ -36,7 +36,7 @@ namespace MFI.Application
             if (!loginRequester.HasSuccess)
                 return loginRequester;
 
-            Client client = _unityOfWork.ClientRequester.Get(user => user.Email == email).FirstOrDefault();
+            Client client = null;
             switch (type)
             {
                 case ClientType.Requester:
