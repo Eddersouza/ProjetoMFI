@@ -1,7 +1,6 @@
 ﻿using MFI.Application.Base;
 using MFI.Application.Interfaces;
 using MFI.Application.ViewModels.Clients.Requesters;
-using MFI.Domain.Entities;
 using MFI.Domain.Enums;
 using MFI.WebAppMVC.Utils.Security;
 using System.Web.Mvc;
@@ -32,7 +31,6 @@ namespace MFI.WebAppMVC.Controllers
         {
             MFIResult result = _clientRequesterApp.Login(email, password, clientType);
 
-
             if (result.HasSuccess)
             {
                 LoginRequester requester = result as LoginRequester;
@@ -40,9 +38,14 @@ namespace MFI.WebAppMVC.Controllers
                 CookieHelper.Set(requester.User, HttpContext);
             }
 
-
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult LogOut()
+        {
+            CookieHelper.Clean();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

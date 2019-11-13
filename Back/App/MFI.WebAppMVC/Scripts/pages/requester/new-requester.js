@@ -17,7 +17,7 @@ function cleanFields() {
 function createNewRequester() {
     let urlNewClientRequester = $('#urlNewClientRequester').val();
 
-    let newRequesters = getNewRequesterData();
+    let newRequesters = getObjectJSONFromForm('.new-requester-form');
 
     if (validPassword(newRequesters)) {
         blockPage(true);
@@ -49,7 +49,7 @@ function createNewRequesterSuccess() {
 
     let urlLogin = $('#urlLogin').val();
 
-    let user = getNewRequesterData();
+    let user = getObjectJSONFromForm('.new-requester-form');
 
     post_to_url(urlLogin, user, 'POST');
 }

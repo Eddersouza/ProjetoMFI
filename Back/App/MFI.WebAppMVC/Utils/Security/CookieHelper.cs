@@ -1,7 +1,5 @@
 ﻿using MFI.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Security;
 
@@ -9,22 +7,14 @@ namespace MFI.WebAppMVC.Utils.Security
 {
     public class CookieHelper
     {
-        /// <summary>
-        /// Clean Authentication cookie.
-        /// </summary>
-        public static void LogOut()
+        public static void Clean()
         {
             FormsAuthentication.SignOut();
         }
 
-        /// <summary>
-        /// Seth cookie.
-        /// </summary>
-        /// <param name="auth">Object with cookie data.</param>
-        /// <param name="httpContext">Current httpContext</param>
         public static void Set(
-            SystemUser auth,
-            HttpContextBase httpContext)
+             SystemUser auth,
+             HttpContextBase httpContext)
         {
             FormsAuthentication.SignOut();
 

@@ -33,7 +33,14 @@
                 else
                 {
                     <li>
-                        <i class="fas fa-user">@userName</i>
+                        <a href="#">
+                            <i class="fas fa-user">&nbsp;&nbsp;</i>@userName
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("LogOut","User")">
+                            <i class="fas fa-power-off">&nbsp;</i>Sair
+                        </a>
                     </li>
                 }
                 <li>&nbsp;&nbsp;&nbsp;</li>
