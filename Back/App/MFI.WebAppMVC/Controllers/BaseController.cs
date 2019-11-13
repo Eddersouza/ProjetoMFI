@@ -1,8 +1,5 @@
 ﻿using MFI.Domain.Entities;
-using Newtonsoft.Json;
 using System;
-using System.Linq;
-using System.Security.Claims;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.Security;

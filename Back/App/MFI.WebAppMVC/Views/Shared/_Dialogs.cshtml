@@ -1,0 +1,63 @@
+﻿@{
+    IList<string> listErrors = TempData["ErrorList"] as List<string> ?? new List<string>();
+    IList<string> listWarnings = TempData["WarningList"] as List<string> ?? new List<string>();
+
+
+    string errorVisible = "hidden";
+    string sucessVisible = "hidden";
+    string warningVisible = listWarnings.Any() ? string.Empty : "hidden";
+}
+
+<div class="navbar-fixed-top container" id="divMessages">
+    <div class="alert alert-danger alert-dismissible row" id="dialog-error" role="alert" @errorVisible>
+        <div class="col-lg-1">
+            <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="col-lg-10">
+            <span id="alertError">
+                @foreach (var item in listErrors)
+                {
+                    @Html.Raw(item + "<br />")
+                }
+            </span>
+        </div>
+        <div class="col-lg-1">
+            <button id="btnCloseDialogError" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="alert alert-success alert-dismissible row" id="dialog-success" role="alert" @sucessVisible>
+        <div class="col-lg-1">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="col-lg-10">
+            <span id="alertSuccess"></span>
+        </div>
+        <div class="col-lg-1">
+            <button id="btnCloseDialogSuccess" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="alert alert-warning alert-dismissible row" id="dialog-warning" role="alert" @warningVisible>
+        <div class="col-lg-1">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="col-lg-10">
+            <span id="alertMessage">
+                @foreach (var item in listWarnings)
+                {
+                    @Html.Raw(item + "<br />")
+                }
+            </span>
+        </div>
+        <div class="col-lg-1">
+            <button id="btnCloseDialogWarning" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>

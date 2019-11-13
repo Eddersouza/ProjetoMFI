@@ -3,6 +3,7 @@ using MFI.Application.Interfaces;
 using MFI.Application.ViewModels.Clients.Requesters;
 using MFI.Domain.Enums;
 using MFI.WebAppMVC.Utils.Security;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace MFI.WebAppMVC.Controllers
@@ -29,13 +30,31 @@ namespace MFI.WebAppMVC.Controllers
             string password,
             ClientType? clientType)
         {
-            MFIResult result = _clientRequesterApp.Login(email, password, clientType);
-
-            if (result.HasSuccess)
+            try
             {
-                LoginRequester requester = result as LoginRequester;
+                MFIResult result = _clientRequesterApp.Login(email, password, clientType);
 
-                CookieHelper.Set(requester.User, HttpContext);
+                if (result.HasSuccess)
+                {
+                    LoginRequester requester = result as LoginRequester;
+
+                    CookieHelper.Set(requester.User, HttpContext);
+                }
+                else
+                {
+                    TempData["WarningList"] = result.Warnings;
+                }
+
+            }
+            catch
+            {
+                List<string> error = new List<string> {
+                    "Ocorreu um erro ao executar a ação.",
+                    "Tente novamente ou entre em contato com o administrador."
+                };
+
+                TempData["ErrorList"] = error;
+
             }
 
             return RedirectToAction("Index", "Home");
