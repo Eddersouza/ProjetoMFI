@@ -1,4 +1,5 @@
-﻿
+﻿@using MFI.Domain.Enums
+
 @{
     ViewBag.Title = "Novo Fornecedor";
 }
@@ -28,8 +29,8 @@
                         <div class="col-md-12">
                             <div class="required form-group">
                                 <label for="txtEmail" class="control-label">Email:</label>
-                                <input class="form-control new-requester-form"
-                                       id="txtEmail"
+                                <input class="new-provider-form" name="clientType" type="hidden" value="@ClientType.Provider" />
+                                <input class="form-control new-provider-form"
                                        name="email"
                                        placeholder="Digite um email"
                                        type="email"
@@ -41,8 +42,7 @@
                         <div class="col-12 col-md-6">
                             <div class="required form-group">
                                 <label for="txtName" class="control-label">Nome</label>
-                                <input class="form-control new-requester-form"
-                                       id="txtName"
+                                <input class="form-control new-provider-form"
                                        name="name"
                                        placeholder="Digite o nome"
                                        type="text"
@@ -55,8 +55,7 @@
                                     Razão Social
                                     <span class="small font-italic">(opcional, apenas se tiver empresa registrada)</span>
                                 </label>
-                                <input class="form-control new-requester-form"
-                                       id="txtCompanyName"
+                                <input class="form-control new-provider-form"
                                        name="companyName"
                                        placeholder="Digite a Razão Social"
                                        type="text"
@@ -68,8 +67,7 @@
                         <div class="col-md-12">
                             <div class="required form-group">
                                 <label for="txtDescription" class="control-label">Sobre você:</label>
-                                <textarea class="form-control new-requester-form"
-                                          id="txtDescription"
+                                <textarea class="form-control new-provider-form"
                                           name="description"
                                           placeholder="Digite algumas palavras sobre você/seu trabalho"></textarea>
                             </div>
@@ -79,8 +77,7 @@
                         <div class="col-md-6">
                             <div class="required form-group">
                                 <label for="txtPassword" class="control-label">Senha</label>
-                                <input class="form-control new-requester-form"
-                                       id="txtPassword"
+                                <input class="form-control new-provider-form"
                                        name="password"
                                        placeholder="Digite sua senha"
                                        type="password"
@@ -90,8 +87,7 @@
                         <div class="col-md-6">
                             <div class="required form-group">
                                 <label for="txtPassword" class="control-label">Confirme a Senha</label>
-                                <input class="form-control new-requester-form"
-                                       id="txtPasswordConfirm"
+                                <input class="form-control new-provider-form"
                                        name="passwordConfirm"
                                        placeholder="Digite sua senha"
                                        type="password"
@@ -128,6 +124,8 @@
     </div>
 </div>
 <input id="urlNewClientProvider" type="hidden" value="@Url.Action("Create","ClientProvider")" />
+<input id="urlLogin" type="hidden" value="@Url.Action("Login","User")" />
+
 @section scripts{
     <script src="~/Scripts/pages/provider/new-provider.js"></script>
 }

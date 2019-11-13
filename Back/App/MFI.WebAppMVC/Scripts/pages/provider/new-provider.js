@@ -5,7 +5,7 @@
 function createNewProvider() {
     let urlNewClientProvider = $('#urlNewClientProvider').val();
 
-    let newProvider = getObjectJSONFromForm('.new-requester-form');
+    let newProvider = getObjectJSONFromForm('.new-provider-form');
 
     if (validPassword(newProvider)) {
         blockPage(true);
@@ -34,6 +34,12 @@ function createNewProviderSuccess() {
     let messages = [];
     messages.push('Cliente criado com sucesso.');
     dialogSuccessShowMessages(messages);
+
+    let urlLogin = $('#urlLogin').val();
+
+    let user = getObjectJSONFromForm('.new-provider-form');
+
+    post_to_url(urlLogin, user, 'POST');
 }
 
 function onDocumentNewProviderReady() {
