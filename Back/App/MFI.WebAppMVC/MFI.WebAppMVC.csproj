@@ -1827,6 +1827,7 @@
     <Content Include="Views\ClientProvider\_ProviderCardList.cshtml" />
     <Content Include="Views\Shared\_Dialogs.cshtml" />
     <Content Include="Views\ClientProvider\_ClientProvider.cshtml" />
+    <Content Include="Views\ClientProvider\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

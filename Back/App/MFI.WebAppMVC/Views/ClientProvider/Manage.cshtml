@@ -1,8 +1,9 @@
 ﻿@using MFI.Domain.Enums
 
 @{
-    ViewBag.Title = "Novo Fornecedor";
+    ViewBag.Title = "Gerenciar Fornecedor";
 }
+
 
 <br />
 <div class="row">
@@ -34,7 +35,7 @@
                         </a>
                     </li>
 
-                    <li role="presentation" class="disabled">
+                    <li role="presentation" class="">
                         <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Serviços">
                             <span class="round-tab">
                                 <i class="fas fa-tasks"></i>
@@ -49,29 +50,9 @@
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         @Html.Partial("_ClientProvider")
 
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <div class="form-group">
-                                    <a class="button180 btn btn-danger"
-                                       href="@Url.Action("Index","Home", null)"
-                                       title="Cancelar Criação de Fornecedor">
-                                        <i class="fas fa-ban">&nbsp;</i>Cancelar
-                                    </a>
-                                    <button class="button180 btn btn-secondary"
-                                            id="btnCleanProvider"
-                                            title="Limpar Campos"
-                                            type="button">
-                                        <i class="fas fa-eraser">&nbsp;</i>Limpar
-                                    </button>
-                                    <button class="button180 btn btn-success"
-                                            id="btnCreateProvider"
-                                            title="Criar Fornecedor"
-                                            type="button">
-                                        <i class="fas fa-save">&nbsp;</i>Criar Novo Fornecedor
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                        </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <h3>Step 2</h3>
@@ -95,5 +76,43 @@
 <input id="urlLogin" type="hidden" value="@Url.Action("Login","User")" />
 
 @section scripts{
-    <script src="~/Scripts/pages/provider/new-provider.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            //Initialize tooltips
+            $('.nav-tabs > li a[title]').tooltip();
+
+            //Wizard
+            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+                var $target = $(e.target);
+
+                if ($target.parent().hasClass('disabled')) {
+                    return false;
+                }
+            });
+
+            $(".next-step").click(function (e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                $active.next().removeClass('disabled');
+                nextTab($active);
+
+            });
+            $(".prev-step").click(function (e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                prevTab($active);
+
+            });
+        });
+
+        function nextTab(elem) {
+            $(elem).next().find('a[data-toggle="tab"]').click();
+        }
+        function prevTab(elem) {
+            $(elem).prev().find('a[data-toggle="tab"]').click();
+        }
+    </script>
 }
+

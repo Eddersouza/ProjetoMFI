@@ -24,7 +24,6 @@ namespace MFI.WebAppMVC.Controllers
 
             result = _clientProviderApp.ListCardsProvider();
             return PartialView("_ProviderCardList", result);
-
         }
 
         [HttpPost]
@@ -58,11 +57,17 @@ namespace MFI.WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Route("{email}")]
+        public ActionResult Manage(string email)
+        {
+            return View();
+        }
+
+        [HttpGet]
         [Route("Novo")]
         public ActionResult New()
         {
             return View();
         }
-
     }
 }
