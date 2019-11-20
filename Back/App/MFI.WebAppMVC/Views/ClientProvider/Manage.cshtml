@@ -51,15 +51,22 @@
                         @Html.Partial("_ClientProvider")
 
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            <li>
+                                <button type="button" class="btn btn-primary next-step" title="Ir para gerenciamento de serviços.">
+                                    <i class="fas fa-tasks">&nbsp;&nbsp;</i>Ir Para Serviços
+                                </button>
+                            </li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
-                        <h3>Step 2</h3>
-                        <p>This is step 2</p>
+                        @Html.Partial("_ServicesProvider")
+
                         <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            <li>
+                                <button type="button" class="btn btn-default prev-step" title="Voltar para dados gerais do fornecedor.">
+                                    <i class="fas fa-user-edit">&nbsp;&nbsp;</i>Voltar para dados do Fornecedor
+                                </button>
+                            </li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">

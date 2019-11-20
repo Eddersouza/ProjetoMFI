@@ -44,7 +44,6 @@ namespace MFI.WebAppMVC.Controllers
                 {
                     TempData["WarningList"] = result.Warnings;
                 }
-
             }
             catch
             {
@@ -54,7 +53,6 @@ namespace MFI.WebAppMVC.Controllers
                 };
 
                 TempData["ErrorList"] = error;
-
             }
 
             return RedirectToAction("Index", "Home");
@@ -65,6 +63,13 @@ namespace MFI.WebAppMVC.Controllers
             CookieHelper.Clean();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [Route("Gerenciar")]
+        public ActionResult Manage()
+        {
+            return RedirectToAction("Manage", "ClientProvider");
         }
     }
 }

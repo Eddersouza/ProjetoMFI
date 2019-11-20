@@ -67,7 +67,8 @@ namespace MFI.Application
                         UserEmail = client.Email,
                         UserName = client.Name,
                         UserId = client.ClientId.ToString(),
-                        Roles = new string[] { client.Type.ToString() }
+                        Roles = new string[] { client.Type.ToString() },
+                        ClientType = client.Type
                     };
                 else
                     loginRequester.Warnings.Add("Usuário ou Senha Inválidos.");

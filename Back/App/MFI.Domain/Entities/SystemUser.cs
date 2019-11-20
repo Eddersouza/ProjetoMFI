@@ -1,9 +1,5 @@
 ﻿using edrsys.Utils.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MFI.Domain.Enums;
 
 namespace MFI.Domain.Entities
 {
@@ -26,12 +22,10 @@ namespace MFI.Domain.Entities
             this.Roles = roles;
         }
 
+        public ClientType ClientType { get; set; }
         public string[] Roles { get; set; }
-
         public string UserEmail { get; set; }
-
         public string UserId { get; set; }
-
         public string UserName { get; set; }
 
         public override string ToString()
@@ -39,5 +33,4 @@ namespace MFI.Domain.Entities
             return EntityHelper.ToJSON(this);
         }
     }
-
 }
