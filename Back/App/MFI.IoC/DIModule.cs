@@ -25,7 +25,7 @@ namespace MFI.IoC
             Container container,
             Lifestyle lifestyle)
         {
-            container.Register<ClientRequesterAppContract, ClientRequesterApp>(lifestyle); 
+            container.Register<ClientRequesterAppContract, ClientRequesterApp>(lifestyle);
             container.Register<ClientProviderAppContract, ClientProviderApp>(lifestyle);
             container.Register<UserAppContract, UserApp>(lifestyle);
         }
@@ -33,10 +33,10 @@ namespace MFI.IoC
         private static void RegisterRepositories(
             Container container,
             Lifestyle lifestyle)
-        {            
+        {
             container.Register<ClientProviderRepositoryContract, ClientProviderRepository>(lifestyle);
-            container.Register<ClientRequesterRepositoryContract, ClientRequesterRepository>(lifestyle);
-            container.Register<UserRepositoryContract, UserRepository>(lifestyle); 
+            container.Register<ServiceRepositoryContract, ServiceRepository>(lifestyle);
+            container.Register<UserRepositoryContract, UserRepository>(lifestyle);
             container.Register<UnityOfWorkContract, UnitOfWork>(lifestyle);
             container.Register(typeof(BaseRepositoryContract<>), typeof(BaseRepository<>), lifestyle);
             container.Register<MFIEFContext>(lifestyle);

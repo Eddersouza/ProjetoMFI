@@ -38,11 +38,13 @@
     <Compile Include="Contracts\Repositories\Base\UnityOfWorkContract.cs" />
     <Compile Include="Contracts\Repositories\ClientProviderRepositoryContract.cs" />
     <Compile Include="Contracts\Repositories\ClientRequesterRepositoryContract.cs" />
+    <Compile Include="Contracts\Repositories\ServiceRepositoryContract.cs" />
     <Compile Include="Contracts\Repositories\UserRepositoryContract.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\ClientRequester.cs" />
     <Compile Include="Entities\ClientProvider.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\SystemUser.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\ClientType.cs" />
