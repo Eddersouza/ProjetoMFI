@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace MFI.WebAppMVC.Controllers
 {
+    [Authorize]
     [RoutePrefix("Fornecedor")]
     public class ClientProviderController : BaseController
     {
@@ -20,6 +21,7 @@ namespace MFI.WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("Cards")]
         public PartialViewResult Cards()
         {

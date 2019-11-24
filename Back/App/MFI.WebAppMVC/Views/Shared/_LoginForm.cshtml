@@ -1,0 +1,32 @@
+﻿@using MFI.Domain.Enums
+
+@model ClientType
+
+<form action="@Url.Action("Login", "User")" name="login-form-@Model" method="post" novalidate="">
+    <div class="form-group">
+        <label class="control-label" for="username">Email</label>
+        <input autocomplete="off"
+               class="form-control"
+               name="email"
+               placeholder="meuemail@gmail.com"
+               title="Digite o seu email"
+               type="text">
+
+
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="password">Senha</label>
+        <input autocomplete="off"
+               class="form-control"
+               name="password"
+               type="password"
+               title="Digite sua Senha">
+
+    </div>
+    <div class="form-group">
+        <input name="clientType" type="hidden" value="@Model" />
+    </div>
+    <button type="submit" class="btn btn-success btn-block btn btn-secondary">
+        Entrar
+    </button>
+</form>

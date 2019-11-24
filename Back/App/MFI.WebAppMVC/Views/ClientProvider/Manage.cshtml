@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Gerenciar Fornecedor";
+    string clientId = ViewBag.ClientId ?? string.Empty;
 }
 
 
@@ -84,7 +85,7 @@
 
 @section scripts{
     <script>
-
+        let clientId = '@clientId';
         $(document).ready(function () {
             //Initialize tooltips
             $('.nav-tabs > li a[title]').tooltip();

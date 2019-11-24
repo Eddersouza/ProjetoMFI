@@ -41,6 +41,7 @@ namespace MFI.WebAppMVC.Controllers
         {
             ViewBag.Name = SystemUser?.UserName;
             ViewBag.IsAuthenticated = IsAuthenticated;
+            ViewBag.ClientId = SystemUser?.UserId;
             base.EndExecute(asyncResult);
         }
     }
