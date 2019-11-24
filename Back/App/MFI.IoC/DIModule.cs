@@ -27,6 +27,7 @@ namespace MFI.IoC
         {
             container.Register<ClientRequesterAppContract, ClientRequesterApp>(lifestyle);
             container.Register<ClientProviderAppContract, ClientProviderApp>(lifestyle);
+            container.Register<ServiceAppContract, ServiceApp>(lifestyle);
             container.Register<UserAppContract, UserApp>(lifestyle);
         }
 

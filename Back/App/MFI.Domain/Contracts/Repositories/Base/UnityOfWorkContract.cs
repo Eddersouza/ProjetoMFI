@@ -4,6 +4,7 @@
     {
         ClientProviderRepositoryContract ClientProvider { get; }
         ClientRequesterRepositoryContract ClientRequester { get; }
+        ServiceRepositoryContract Service { get; }
         UserRepositoryContract User { get; }
 
         void BeginTransaction();

@@ -8,27 +8,30 @@ namespace MFI.Data.EF.Repositories.Base
 {
     public class UnitOfWork : UnityOfWorkContract
     {
-        private readonly MFIEFContext _context;
-        private DbContextTransaction _dbTransaction;
-
         private readonly ClientProviderRepositoryContract _clientProviderRepository;
         private readonly ClientRequesterRepositoryContract _clientRequesterRepository;
+        private readonly MFIEFContext _context;
+        private readonly ServiceRepositoryContract _serviceRepository;
         private readonly UserRepositoryContract _userRepository;
+        private DbContextTransaction _dbTransaction;
 
         public UnitOfWork(
             MFIEFContext context,
             UserRepositoryContract userRepository,
             ClientRequesterRepositoryContract clientRequesterRepository,
-            ClientProviderRepositoryContract clientProviderRepository)
+            ClientProviderRepositoryContract clientProviderRepository,
+            ServiceRepositoryContract serviceRepository)
         {
             this._context = context;
             this._userRepository = userRepository;
             this._clientRequesterRepository = clientRequesterRepository;
             this._clientProviderRepository = clientProviderRepository;
+            _serviceRepository = serviceRepository;
         }
 
         public ClientProviderRepositoryContract ClientProvider => _clientProviderRepository;
         public ClientRequesterRepositoryContract ClientRequester => _clientRequesterRepository;
+        public ServiceRepositoryContract Service => _serviceRepository;
         public UserRepositoryContract User => _userRepository;
 
         public void BeginTransaction()

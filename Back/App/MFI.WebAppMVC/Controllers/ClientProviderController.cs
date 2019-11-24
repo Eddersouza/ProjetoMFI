@@ -9,11 +9,14 @@ namespace MFI.WebAppMVC.Controllers
     public class ClientProviderController : BaseController
     {
         private readonly ClientProviderAppContract _clientProviderApp;
+        private readonly ServiceAppContract _serviceApp;
 
         public ClientProviderController(
-            ClientProviderAppContract clientProviderApp)
+            ClientProviderAppContract clientProviderApp,
+            ServiceAppContract serviceApp)
         {
             this._clientProviderApp = clientProviderApp;
+            this._serviceApp = serviceApp;
         }
 
         [HttpGet]
@@ -68,6 +71,35 @@ namespace MFI.WebAppMVC.Controllers
         public ActionResult New()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Route("Servicos")]
+        public JsonResult Services(string clientId)
+        {
+            MFIResultContract result = null;
+            try
+            {
+                result = _serviceApp.GetServicesProvider(clientId); ;
+
+                if (result.HasSuccess)
+                    return Json(result);
+
+                Response.StatusCode = 400;
+
+                return Json(result);
+            }
+            catch
+            {
+                result = new MFIResult();
+
+                result.AddWarning("Ocorreu um erro ao executar a ação.");
+                result.AddWarning("Tente novamente ou entre em contato com o administrador.");
+
+                Response.StatusCode = 500;
+
+                return Json(result);
+            }
         }
     }
 }
