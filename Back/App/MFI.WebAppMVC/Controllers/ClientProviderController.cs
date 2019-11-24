@@ -76,32 +76,15 @@ namespace MFI.WebAppMVC.Controllers
         }
 
         [HttpGet]
-        [Route("Servicos")]
-        public JsonResult Services(string clientId)
+        [Route("Servicos/{clientId}")]
+        public PartialViewResult Services(string clientId)
         {
             MFIResultContract result = null;
-            try
-            {
-                result = _serviceApp.GetServicesProvider(clientId); ;
 
-                if (result.HasSuccess)
-                    return Json(result);
+            result = _serviceApp.GetServicesProvider(clientId);
 
-                Response.StatusCode = 400;
+            return PartialView("_ServicesProvider", result);
 
-                return Json(result);
-            }
-            catch
-            {
-                result = new MFIResult();
-
-                result.AddWarning("Ocorreu um erro ao executar a ação.");
-                result.AddWarning("Tente novamente ou entre em contato com o administrador.");
-
-                Response.StatusCode = 500;
-
-                return Json(result);
-            }
         }
     }
 }

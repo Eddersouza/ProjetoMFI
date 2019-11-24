@@ -1,8 +1,8 @@
-﻿@using MFI.Domain.Enums
-
-@{
+﻿@{
     ViewBag.Title = "Gerenciar Fornecedor";
     string clientId = ViewBag.ClientId ?? string.Empty;
+    bool isAuthenticated = ViewBag.IsAuthenticated ?? false;
+    string urlGoBack = isAuthenticated ? @Url.Action("Index", "Home", null) : @Url.Action("ChooseType", "User", null);
 }
 
 
@@ -12,7 +12,7 @@
         <div class="panel panel-default">
             <div class="panel-heading " ligth>
                 <h3 class="panel-title">
-                    <a class="btn btn-default" href="@Url.Action("ChooseType","User", null)">
+                    <a class="btn btn-default" href="@urlGoBack">
                         <i class="fas fa-reply"></i>
                     </a>&nbsp; Fornecedor
                 </h3>
@@ -29,7 +29,7 @@
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Fornecedor">
+                        <a href="#tab-provider-data" data-toggle="tab" aria-controls="tab-provider-data" role="tab" title="Fornecedor">
                             <span class="round-tab">
                                 <i class="fas fa-user-edit"></i>
                             </span>
@@ -37,7 +37,7 @@
                     </li>
 
                     <li role="presentation" class="">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Serviços">
+                        <a href="#tab-provider-services" data-toggle="tab" aria-controls="tab-provider-services" role="tab" title="Serviços">
                             <span class="round-tab">
                                 <i class="fas fa-tasks"></i>
                             </span>
@@ -48,31 +48,34 @@
 
             <form role="form">
                 <div class="tab-content">
-                    <div class="tab-pane active" role="tabpanel" id="step1">
+                    <div class="tab-pane active" role="tabpanel" id="tab-provider-data">
+                        <div class="col-md-12">
+                            <ul class="list-inline pull-right">
+                                <li>
+                                    <button type="button" class="btn btn-primary next-step" title="Ir para gerenciamento de serviços.">
+                                        <i class="fas fa-tasks">&nbsp;&nbsp;</i>
+                                        Ir Para Serviços&nbsp;&nbsp;
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                         @Html.Partial("_ClientProvider")
-
-                        <ul class="list-inline pull-right">
-                            <li>
-                                <button type="button" class="btn btn-primary next-step" title="Ir para gerenciamento de serviços.">
-                                    <i class="fas fa-tasks">&nbsp;&nbsp;</i>Ir Para Serviços
-                                </button>
-                            </li>
-                        </ul>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="step2">
-                        @Html.Partial("_ServicesProvider")
+                    <div class="tab-pane" role="tabpanel" id="tab-provider-services">
+                        <div class="col-md-12">
+                            <ul class="list-inline pull-right">
+                                <li>
+                                    <button type="button" class="btn btn-default prev-step" title="Voltar para dados gerais do fornecedor.">
+                                        <i class="fas fa-arrow-left">&nbsp;&nbsp;</i>
+                                        Voltar para dados do Fornecedor&nbsp;&nbsp;
+                                        <i class="fas fa-user-edit"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="provider-service-container"></div>
 
-                        <ul class="list-inline pull-right">
-                            <li>
-                                <button type="button" class="btn btn-default prev-step" title="Voltar para dados gerais do fornecedor.">
-                                    <i class="fas fa-user-edit">&nbsp;&nbsp;</i>Voltar para dados do Fornecedor
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tab-pane" role="tabpanel" id="complete">
-                        <h3>Complete</h3>
-                        <p>You have successfully completed all steps.</p>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -80,40 +83,32 @@
         </div>
     </section>
 </div>
-<input id="urlNewClientProvider" type="hidden" value="@Url.Action("Create","ClientProvider")" />
 <input id="urlLogin" type="hidden" value="@Url.Action("Login","User")" />
+<input id="urlNewClientProvider" type="hidden" value="@Url.Action("Create","ClientProvider")" />
+<input id="urlGetClientProviderService" type="hidden" value="@Url.Action("Services","ClientProvider", new { clientId ="/" })" />
 
 @section scripts{
     <script>
         let clientId = '@clientId';
-        $(document).ready(function () {
-            //Initialize tooltips
-            $('.nav-tabs > li a[title]').tooltip();
 
-            //Wizard
-            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+        function getproviderServices() {
+            blockPage(true);
+            let urlGetClientProviderService = $("#urlGetClientProviderService").val() + clientId;
+            apiAjax('GET', 'HTML', 'text/HTML',
+                {}, urlGetClientProviderService,
+                getproviderServicesSuccess, getproviderServicesFail, resultApiComplete);
+        }
 
-                var $target = $(e.target);
+        function getproviderServicesFail() {
+            dialogErrorShowMessages();
+        }
 
-                if ($target.parent().hasClass('disabled')) {
-                    return false;
-                }
-            });
-
-            $(".next-step").click(function (e) {
-
-                var $active = $('.wizard .nav-tabs li.active');
-                $active.next().removeClass('disabled');
-                nextTab($active);
-
-            });
-            $(".prev-step").click(function (e) {
-
-                var $active = $('.wizard .nav-tabs li.active');
-                prevTab($active);
-
-            });
-        });
+        function getproviderServicesSuccess(data) {
+            $("#provider-service-container").html(data);
+        }
+        function onProviderManageReady() {
+            setTabFunctions();
+        }
 
         function nextTab(elem) {
             $(elem).next().find('a[data-toggle="tab"]').click();
@@ -121,6 +116,54 @@
         function prevTab(elem) {
             $(elem).prev().find('a[data-toggle="tab"]').click();
         }
+
+        function setTabFunctions() {
+            //Initialize tooltips
+            $('.nav-tabs > li a[title]').tooltip();
+
+            setTabFunctionShowTab();
+            setTabFunctionNextStep();
+            setTabFunctionPrevtStep();
+        }
+
+        function setTabFunctionNextStep() {
+             $(".next-step").click(function (e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                $active.next().removeClass('disabled');
+                nextTab($active);
+
+            });
+        }
+
+        function setTabFunctionPrevtStep() {
+               $(".prev-step").click(function (e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                prevTab($active);
+
+            });
+        }
+
+        function setTabFunctionShowTab() {
+              //Wizard
+            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+                let $target = $(e.target);
+
+                let tabName = $target[0].hash;
+
+                if (tabName == "#tab-provider-services") {
+                    getproviderServices();
+                }
+
+                if ($target.parent().hasClass('disabled')) {
+                    return false;
+                }
+            });
+        }
+
+        $(document).ready(onProviderManageReady);
     </script>
 }
 

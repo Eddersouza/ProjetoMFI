@@ -1,0 +1,33 @@
+﻿@using MFI.Application.ViewModels.Clients.Providers
+
+@model ServiceProviderItemView
+
+@{
+    string checkState = Model.Active ? "checked" : string.Empty;
+}
+
+<div class="col-md-4 col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <label class="panel-title">
+                <input class="service-provider-@Model.ServiceId" type="checkbox" @checkState />&nbsp;&nbsp;@Model.Name
+            </label>
+        </div>
+        <div class="panel-body">
+            <p>
+                @Model.Description
+            </p>
+        </div>
+        <div class="panel-footer">
+            <div class="input-group">
+                <span class="input-group-addon">Preço inicial</span>
+                <input class="form-control service-provider-@Model.ServiceId" type="text" value="@Model.MinimalAmount" />
+                <span class="input-group-btn">
+                    <button class="btn btn-block btn-success" data-service-id="@Model.ServiceId">
+                        <i class="fas fa-save"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

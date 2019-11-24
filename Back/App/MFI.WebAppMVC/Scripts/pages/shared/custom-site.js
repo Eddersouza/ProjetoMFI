@@ -62,5 +62,6 @@ function post_to_url(path, params, method) {
 }
 
 function resultApiComplete() {
+    $('button').tooltip()
     blockPage(false);
 }

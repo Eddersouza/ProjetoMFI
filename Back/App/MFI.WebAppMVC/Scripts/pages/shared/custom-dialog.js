@@ -21,6 +21,13 @@ function closeDialogs() {
 }
 
 function dialogErrorShowMessages(messages) {
+
+    if (!messages || messages.length === 0) {
+        messages = [];
+        messages.push("Ocorreu um erro ao executar a ação.");
+        messages.push("Tente novamente ou entre em contato com o administrador.");
+    }
+
     let spanText = $('#alertError');
     let divMessage = $('#dialog-error');
 
