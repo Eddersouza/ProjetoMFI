@@ -60,7 +60,7 @@
                                 </li>
                             </ul>
                         </div>
-                        @Html.Partial("_ClientProvider")
+                        <div id="provider-client-container"></div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab-provider-services">
                         <div class="col-md-12">
@@ -86,28 +86,39 @@
 <input id="urlLogin" type="hidden" value="@Url.Action("Login","User")" />
 <input id="urlNewClientProvider" type="hidden" value="@Url.Action("Create","ClientProvider")" />
 <input id="urlGetClientProviderService" type="hidden" value="@Url.Action("Services","ClientProvider", new { clientId ="/" })" />
+<input id="urlGetDataClientProvider" type="hidden" value="@Url.Action("PartialClientProvider","ClientProvider", new { clientId ="/" })" />
 
 @section scripts{
     <script>
         let clientId = '@clientId';
+
+         function getproviderData() {
+            blockPage(true);
+            let urlGetDataClientProvider = $("#urlGetDataClientProvider").val() + clientId;
+            apiAjax('GET', 'HTML', 'text/HTML',
+                {}, urlGetDataClientProvider,
+                getproviderDataSuccess, dialogErrorShowMessages, resultApiComplete);
+        }
 
         function getproviderServices() {
             blockPage(true);
             let urlGetClientProviderService = $("#urlGetClientProviderService").val() + clientId;
             apiAjax('GET', 'HTML', 'text/HTML',
                 {}, urlGetClientProviderService,
-                getproviderServicesSuccess, getproviderServicesFail, resultApiComplete);
+                getproviderServicesSuccess, dialogErrorShowMessages, resultApiComplete);
         }
 
-        function getproviderServicesFail() {
-            dialogErrorShowMessages();
+        function getproviderDataSuccess(data) {
+            $("#provider-client-container").html(data);
         }
 
         function getproviderServicesSuccess(data) {
             $("#provider-service-container").html(data);
         }
+
         function onProviderManageReady() {
             setTabFunctions();
+            getproviderData();
         }
 
         function nextTab(elem) {

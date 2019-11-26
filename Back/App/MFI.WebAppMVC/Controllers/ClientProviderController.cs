@@ -76,6 +76,17 @@ namespace MFI.WebAppMVC.Controllers
         }
 
         [HttpGet]
+        [Route("Dados/{clientId}")]
+        public PartialViewResult PartialClientProvider(string clientId)
+        {
+            ClientProviderView result = null;
+
+            result = _clientProviderApp.getClient(clientId);
+
+            return PartialView("_ClientProvider", result);
+        }
+
+        [HttpGet]
         [Route("Servicos/{clientId}")]
         public PartialViewResult Services(string clientId)
         {
@@ -84,7 +95,6 @@ namespace MFI.WebAppMVC.Controllers
             result = _serviceApp.GetServicesProvider(clientId);
 
             return PartialView("_ServicesProvider", result);
-
         }
     }
 }

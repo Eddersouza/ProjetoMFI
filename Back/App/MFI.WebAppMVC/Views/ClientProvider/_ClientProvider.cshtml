@@ -1,4 +1,7 @@
 ﻿@using MFI.Domain.Enums
+@using MFI.Application.ViewModels.Clients.Providers
+
+@model ClientProviderView
 
 <div class="col-md-12">
     <div class="panel panel-default">
@@ -13,7 +16,7 @@
                                    name="email"
                                    placeholder="Digite um email"
                                    type="email"
-                                   value="" />
+                                   value="@Model.Email" />
                         </div>
                     </div>
                 </div>
@@ -25,7 +28,7 @@
                                    name="name"
                                    placeholder="Digite o nome"
                                    type="text"
-                                   value="">
+                                   value="@Model.Name">
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
@@ -38,7 +41,7 @@
                                    name="companyName"
                                    placeholder="Digite a Razão Social"
                                    type="text"
-                                   value="">
+                                   value="@Model.CompanyName">
                         </div>
                     </div>
                 </div>
@@ -48,32 +51,36 @@
                             <label for="txtDescription" class="control-label">Sobre você:</label>
                             <textarea class="form-control new-provider-form"
                                       name="description"
-                                      placeholder="Digite algumas palavras sobre você/seu trabalho"></textarea>
+                                      placeholder="Digite algumas palavras sobre você/seu trabalho">@Model.Description</textarea>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="required form-group">
-                            <label for="txtPassword" class="control-label">Senha</label>
-                            <input class="form-control new-provider-form"
-                                   name="password"
-                                   placeholder="Digite sua senha"
-                                   type="password"
-                                   value="">
+
+                @if (string.IsNullOrEmpty(Model.ClientId))
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="required form-group">
+                                <label for="txtPassword" class="control-label">Senha</label>
+                                <input class="form-control new-provider-form"
+                                       name="password"
+                                       placeholder="Digite sua senha"
+                                       type="password"
+                                       value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="required form-group">
+                                <label for="txtPassword" class="control-label">Confirme a Senha</label>
+                                <input class="form-control new-provider-form"
+                                       name="passwordConfirm"
+                                       placeholder="Digite sua senha"
+                                       type="password"
+                                       value="">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="required form-group">
-                            <label for="txtPassword" class="control-label">Confirme a Senha</label>
-                            <input class="form-control new-provider-form"
-                                   name="passwordConfirm"
-                                   placeholder="Digite sua senha"
-                                   type="password"
-                                   value="">
-                        </div>
-                    </div>
-                </div>
+                }
             </form>
         </div>
     </div>
