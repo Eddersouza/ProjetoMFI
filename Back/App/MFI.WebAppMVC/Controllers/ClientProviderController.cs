@@ -32,6 +32,7 @@ namespace MFI.WebAppMVC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("")]
         public JsonResult Create(
            CreateClientProvider client)
@@ -63,16 +64,19 @@ namespace MFI.WebAppMVC.Controllers
 
         [HttpGet]
         [Route("Gerenciar")]
-        public ActionResult Manage()
+        public ActionResult Manage(
+            string tabs = null)
         {
+            ViewBag.Tabs = tabs;
             return View();
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("Novo")]
         public ActionResult New()
         {
-            return View();
+            return View(new ClientProviderView());
         }
 
         [HttpGet]
