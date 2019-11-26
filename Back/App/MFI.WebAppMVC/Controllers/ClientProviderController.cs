@@ -63,7 +63,7 @@ namespace MFI.WebAppMVC.Controllers
 
         [HttpGet]
         [Route("Gerenciar")]
-        public ActionResult Manage(string email)
+        public ActionResult Manage()
         {
             return View();
         }

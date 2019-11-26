@@ -4,6 +4,7 @@ using MFI.Application.ViewModels.Clients.Providers;
 using MFI.Domain.Contracts.Repositories.Base;
 using MFI.Domain.Entities;
 using MFI.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -61,6 +62,21 @@ namespace MFI.Application
                     provider.EventNotification.List);
 
             return CreateNewProvider(provider);
+        }
+
+        public ClientProviderView getClient(string clientId)
+        {
+            ClientProvider client = _unityOfWork.ClientProvider.Get(new object[] { new Guid(clientId) });
+
+            if (client == null)
+                return new ClientProviderView();
+
+            return new ClientProviderView(
+                client.ClientId,
+                client.Email,
+                client.Name,
+                client.CompanyName,
+                client.Description);
         }
 
         public MFIResult ListCardsProvider()

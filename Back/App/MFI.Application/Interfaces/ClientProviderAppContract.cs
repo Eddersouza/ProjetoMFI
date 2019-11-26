@@ -8,6 +8,8 @@ namespace MFI.Application.Interfaces
         MFIResult Create(
            CreateClientProvider client);
 
+        ClientProviderView getClient(string clientId);
+
         MFIResult ListCardsProvider();
     }
 }

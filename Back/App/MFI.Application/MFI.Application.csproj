@@ -47,6 +47,7 @@
     <Compile Include="UserApp.cs" />
     <Compile Include="ViewModels\Clients\Providers\CardProviderView.cs" />
     <Compile Include="ViewModels\Clients\Providers\CardsProviderView.cs" />
+    <Compile Include="ViewModels\Clients\Providers\ClientProviderView.cs" />
     <Compile Include="ViewModels\Clients\Providers\CreateClientProvider.cs" />
     <Compile Include="ViewModels\Clients\Providers\CreatedClientProvider.cs" />
     <Compile Include="ViewModels\Clients\Providers\NotCreatedClientProvider.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="ViewModels\Clients\Requesters\LoginRequester.cs" />
     <Compile Include="ViewModels\Clients\Requesters\NotCreatedClientRequester.cs" />
     <Compile Include="ViewModels\Clients\Requesters\CreatedClientRequester.cs" />
+    <Compile Include="ViewModels\ViewBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\edrsys_EventNotification\edrsys.EventNotification\edrsys.EventNotification.csproj">
