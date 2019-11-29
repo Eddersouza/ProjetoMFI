@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MFI.Domain.Entities
 {
@@ -24,6 +25,7 @@ namespace MFI.Domain.Entities
 
         public string Description { get; set; }
         public string Name { get; set; }
+        public virtual IList<ProviderService> ProviderServices { get; set; }
         public int ServiceId { get; set; }
     }
 }

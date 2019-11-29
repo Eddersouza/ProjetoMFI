@@ -1,6 +1,7 @@
 ﻿using edrsys.EventNotification;
 using edrsys.EventNotification.Levels;
 using edrsys.Utils.extensions;
+using System.Collections.Generic;
 
 namespace MFI.Domain.Entities
 {
@@ -54,6 +55,7 @@ namespace MFI.Domain.Entities
 
         public string CompanyName { get; set; }
         public string Description { get; set; }
+        public virtual IList<ProviderService> ProviderServices { get; set; }
 
         public override void ValidadeToCreation()
         {
