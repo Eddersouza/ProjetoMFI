@@ -13,7 +13,7 @@ namespace MFI.Data.EF.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201912010118565_addProviderServices"; }
+            get { return "201912010132001_addProviderServices"; }
         }
         
         string IMigrationMetadata.Source

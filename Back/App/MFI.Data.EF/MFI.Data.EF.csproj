@@ -85,9 +85,9 @@
     <Compile Include="Migrations\201911210112395_addService.Designer.cs">
       <DependentUpon>201911210112395_addService.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912010118565_addProviderServices.cs" />
-    <Compile Include="Migrations\201912010118565_addProviderServices.Designer.cs">
-      <DependentUpon>201912010118565_addProviderServices.cs</DependentUpon>
+    <Compile Include="Migrations\201912010132001_addProviderServices.cs" />
+    <Compile Include="Migrations\201912010132001_addProviderServices.Designer.cs">
+      <DependentUpon>201912010132001_addProviderServices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,8 +128,8 @@
     <EmbeddedResource Include="Migrations\201911210112395_addService.resx">
       <DependentUpon>201911210112395_addService.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912010118565_addProviderServices.resx">
-      <DependentUpon>201912010118565_addProviderServices.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912010132001_addProviderServices.resx">
+      <DependentUpon>201912010132001_addProviderServices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

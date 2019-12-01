@@ -15,7 +15,7 @@ namespace MFI.Data.EF.Migrations
                         ServiceId = c.Int(nullable: false),
                         MinimunAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CreateDate = c.DateTime(nullable: false, precision: 0),
-                        CreatedByUserId = c.String(unicode: false),
+                        CreatedByUserId = c.String(nullable: false, maxLength: 36, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => new { t.ClientId, t.ServiceId })
                 .ForeignKey("dbo.Clients", t => t.ClientId, cascadeDelete: true)
