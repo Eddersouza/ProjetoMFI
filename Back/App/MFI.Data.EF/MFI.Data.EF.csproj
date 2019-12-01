@@ -95,6 +95,7 @@
     <Compile Include="Repositories\Base\UnitOfWork.cs" />
     <Compile Include="Repositories\ClientProviderRepository.cs" />
     <Compile Include="Repositories\ClientRequesterRepository.cs" />
+    <Compile Include="Repositories\ProviderServiceRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>

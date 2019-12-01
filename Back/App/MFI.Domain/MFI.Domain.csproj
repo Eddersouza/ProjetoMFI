@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Repositories\Base\BaseRepositoryContract.cs" />
+    <Compile Include="Contracts\Repositories\ProviderServiceRepositoryContract.cs" />
     <Compile Include="Contracts\Repositories\Base\UnityOfWorkContract.cs" />
     <Compile Include="Contracts\Repositories\ClientProviderRepositoryContract.cs" />
     <Compile Include="Contracts\Repositories\ClientRequesterRepositoryContract.cs" />

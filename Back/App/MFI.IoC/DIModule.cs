@@ -37,6 +37,7 @@ namespace MFI.IoC
         {
             container.Register<ClientProviderRepositoryContract, ClientProviderRepository>(lifestyle);
             container.Register<ClientRequesterRepositoryContract, ClientRequesterRepository>(lifestyle);
+            container.Register<ProviderServiceRepositoryContract, ProviderServiceRepository>(lifestyle);
             container.Register<ServiceRepositoryContract, ServiceRepository>(lifestyle);
             container.Register<UserRepositoryContract, UserRepository>(lifestyle);
             container.Register<UnityOfWorkContract, UnitOfWork>(lifestyle);
