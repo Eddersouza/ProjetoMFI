@@ -24,6 +24,8 @@ namespace MFI.Application
             List<ServiceProviderItemView> serviceProviders = new List<ServiceProviderItemView>();
             IEnumerable<Service> services = _unityOfWork.Service.Get();
 
+            string createdBy = string.Empty;
+
             foreach (var service in services)
             {
                 serviceProviders.Add(new ServiceProviderItemView(
