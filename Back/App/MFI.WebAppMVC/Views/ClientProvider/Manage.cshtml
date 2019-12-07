@@ -103,6 +103,31 @@
             let serviceId = $(this).data('service-id');
         }
 
+        function changeStyleActivePanel(active, serviceId) {
+            let panel = $('#service-provider-panel-' + serviceId);
+
+            if (active) {
+                panel.removeClass('panel-default')
+                panel.addClass('panel-success')
+            }
+            else {
+                panel.removeClass('panel-success')
+                panel.addClass('panel-default')
+            }
+        }
+
+         function checkBoxProviderService_onChange() {
+            let element = $(this);
+            let checked = element.prop('checked')
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            let serviceId = $(this).data('service-id')
+
+             changeStyleActivePanel(checked, serviceId);
+        }
+
          function getproviderData() {
             blockPage(true);
             let urlGetDataClientProvider = $("#urlGetDataClientProvider").val() + clientId;
@@ -129,8 +154,13 @@
         }
 
         function onProviderManageReady() {
+
             setTabFunctions();
             getproviderData();
+
+            $("body").delegate('.service-provide-check', 'change', checkBoxProviderService_onChange);
+
+            return true;
         }
 
         function nextTab(elem) {
