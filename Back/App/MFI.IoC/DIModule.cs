@@ -25,8 +25,9 @@ namespace MFI.IoC
             Container container,
             Lifestyle lifestyle)
         {
-            container.Register<ClientRequesterAppContract, ClientRequesterApp>(lifestyle);
+            container.Register<ClientRequesterAppContract, ClientRequesterApp>(lifestyle); 
             container.Register<ClientProviderAppContract, ClientProviderApp>(lifestyle);
+            container.Register<ProviderServiceAppContract, ProviderServiceApp>(lifestyle);
             container.Register<ServiceAppContract, ServiceApp>(lifestyle);
             container.Register<UserAppContract, UserApp>(lifestyle);
         }

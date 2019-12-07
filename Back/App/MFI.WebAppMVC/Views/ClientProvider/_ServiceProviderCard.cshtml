@@ -10,10 +10,11 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <label class="panel-title">
-                <input class="service-provider-@Model.ServiceId" type="checkbox" @checkState />&nbsp;&nbsp;@Model.Name
+                <input class="service-provider-@Model.ServiceId" name="name" type="checkbox" @checkState />&nbsp;&nbsp;@Model.Name
             </label>
         </div>
         <div class="panel-body">
+            <input class="service-provider-@Model.ServiceId" name="clientId" type="hidden" value="@Model.ClientId" />&nbsp;&nbsp;@Model.Name
             <p>
                 @Model.Description
             </p>
@@ -21,9 +22,9 @@
         <div class="panel-footer">
             <div class="input-group">
                 <span class="input-group-addon">Preço inicial</span>
-                <input class="form-control service-provider-@Model.ServiceId" type="text" value="@Model.MinimalAmount" />
+                <input class="form-control miniumAmountInput service-provider-@Model.ServiceId" name="minimalAmountText" type="text" value="@Model.MinimalAmountText" />
                 <span class="input-group-btn">
-                    <button class="btn btn-block btn-success" data-service-id="@Model.ServiceId">
+                    <button class="btn btn-block btn-success btnManageService" data-service-id="@Model.ServiceId">
                         <i class="fas fa-save"></i>
                     </button>
                 </span>

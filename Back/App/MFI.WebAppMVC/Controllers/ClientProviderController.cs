@@ -11,13 +11,16 @@ namespace MFI.WebAppMVC.Controllers
     {
         private readonly ClientProviderAppContract _clientProviderApp;
         private readonly ServiceAppContract _serviceApp;
+        private readonly ProviderServiceAppContract _providerServiceApp;
 
         public ClientProviderController(
             ClientProviderAppContract clientProviderApp,
-            ServiceAppContract serviceApp)
+            ServiceAppContract serviceApp,
+            ProviderServiceAppContract providerServiceApp)
         {
             this._clientProviderApp = clientProviderApp;
             this._serviceApp = serviceApp;
+            _providerServiceApp = providerServiceApp;
         }
 
         [HttpGet]
@@ -99,6 +102,38 @@ namespace MFI.WebAppMVC.Controllers
             result = _serviceApp.GetServicesProvider(clientId);
 
             return PartialView("_ServicesProvider", result);
+        }
+
+        [HttpPost]
+        [Route("Servico/Gerenciar")]
+        public JsonResult ServiceManage(
+            ServiceProviderItemView service)
+        {
+            MFIResultContract result = new MFIResult();
+            try
+            {
+                bool add = _providerServiceApp.Add(service);
+
+                if (add)
+                {
+                    result.AddWarning("Erro ao alterar Serviço.");
+                    Response.StatusCode = 400;
+
+                    return Json(result);
+                }
+
+
+                return Json(result);
+            }
+            catch
+            {
+                result.AddWarning("Ocorreu um erro ao executar a ação.");
+                result.AddWarning("Tente novamente ou entre em contato com o administrador.");
+
+                Response.StatusCode = 500;
+
+                return Json(result);
+            }
         }
     }
 }

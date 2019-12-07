@@ -92,6 +92,17 @@
     <script>
         let clientId = '@clientId';
 
+        function applyMask() {
+            $('.miniumAmountInput').mask('000.000.000,00', { reverse: true });
+        }
+
+        function btnManageService_onClick() {
+            event.preventDefault();
+            event.stopPropagation();
+
+            let serviceId = $(this).data('service-id');
+        }
+
          function getproviderData() {
             blockPage(true);
             let urlGetDataClientProvider = $("#urlGetDataClientProvider").val() + clientId;
@@ -114,6 +125,7 @@
 
         function getproviderServicesSuccess(data) {
             $("#provider-service-container").html(data);
+            applyMask();
         }
 
         function onProviderManageReady() {

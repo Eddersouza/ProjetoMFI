@@ -12,8 +12,9 @@ namespace MFI.WebAppMVC
                         "~/Scripts/jquery.blockUI.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/customsite").Include(
-                        "~/Scripts/pages/shared/custom-site.js",
-                        "~/Scripts/pages/shared/custom-dialog.js"));
+                "~/Scripts/jquery.mask.js",
+                "~/Scripts/pages/shared/custom-site.js",
+                "~/Scripts/pages/shared/custom-dialog.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
