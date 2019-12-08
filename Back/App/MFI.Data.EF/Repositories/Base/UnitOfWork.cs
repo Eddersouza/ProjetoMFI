@@ -11,6 +11,7 @@ namespace MFI.Data.EF.Repositories.Base
         private readonly ClientProviderRepositoryContract _clientProviderRepository;
         private readonly ClientRequesterRepositoryContract _clientRequesterRepository;
         private readonly MFIEFContext _context;
+        private readonly ProviderServiceRepositoryContract _providerServiceRepository;
         private readonly ServiceRepositoryContract _serviceRepository;
         private readonly UserRepositoryContract _userRepository;
         private DbContextTransaction _dbTransaction;
@@ -20,17 +21,20 @@ namespace MFI.Data.EF.Repositories.Base
             UserRepositoryContract userRepository,
             ClientRequesterRepositoryContract clientRequesterRepository,
             ClientProviderRepositoryContract clientProviderRepository,
+            ProviderServiceRepositoryContract providerServiceRepository,
             ServiceRepositoryContract serviceRepository)
         {
             this._context = context;
             this._userRepository = userRepository;
             this._clientRequesterRepository = clientRequesterRepository;
             this._clientProviderRepository = clientProviderRepository;
+            _providerServiceRepository = providerServiceRepository;
             _serviceRepository = serviceRepository;
         }
 
         public ClientProviderRepositoryContract ClientProvider => _clientProviderRepository;
         public ClientRequesterRepositoryContract ClientRequester => _clientRequesterRepository;
+        public ProviderServiceRepositoryContract ProviderService => _providerServiceRepository;
         public ServiceRepositoryContract Service => _serviceRepository;
         public UserRepositoryContract User => _userRepository;
 

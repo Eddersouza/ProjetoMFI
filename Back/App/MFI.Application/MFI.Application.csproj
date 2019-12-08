@@ -66,6 +66,10 @@
       <Project>{DA2F6B99-AA8A-4BCE-AB0F-60CAEBC13B4D}</Project>
       <Name>edrsys.EventNotification</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\edrsys_Utils\edrsys.Utils\edrsys.Utils.csproj">
+      <Project>{47779B3B-1383-4D92-A44F-38B764C57710}</Project>
+      <Name>edrsys.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MFI.Domain\MFI.Domain.csproj">
       <Project>{91B89BFE-A5C3-40A1-B0A3-395EF7FC33AB}</Project>
       <Name>MFI.Domain</Name>

@@ -1,6 +1,7 @@
 ﻿using MFI.Application.Base;
 using MFI.Application.Interfaces;
 using MFI.Application.ViewModels.Clients.Providers;
+using System;
 using System.Web.Mvc;
 
 namespace MFI.WebAppMVC.Controllers
@@ -114,7 +115,7 @@ namespace MFI.WebAppMVC.Controllers
             {
                 bool add = _providerServiceApp.Add(service);
 
-                if (add)
+                if (!add)
                 {
                     result.AddWarning("Erro ao alterar Serviço.");
                     Response.StatusCode = 400;
@@ -125,7 +126,7 @@ namespace MFI.WebAppMVC.Controllers
 
                 return Json(result);
             }
-            catch
+            catch(Exception ex)
             {
                 result.AddWarning("Ocorreu um erro ao executar a ação.");
                 result.AddWarning("Tente novamente ou entre em contato com o administrador.");

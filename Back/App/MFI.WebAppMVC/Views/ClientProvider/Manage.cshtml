@@ -87,6 +87,7 @@
 <input id="urlNewClientProvider" type="hidden" value="@Url.Action("Create","ClientProvider")" />
 <input id="urlGetClientProviderService" type="hidden" value="@Url.Action("Services","ClientProvider", new { clientId ="/" })" />
 <input id="urlGetDataClientProvider" type="hidden" value="@Url.Action("PartialClientProvider","ClientProvider", new { clientId ="/" })" />
+<input id="urlManageProviderService" type="hidden" value="@Url.Action("ServiceManage","ClientProvider")" />
 
 @section scripts{
     <script>
@@ -101,6 +102,10 @@
             event.stopPropagation();
 
             let serviceId = $(this).data('service-id');
+            let service = getObjectJSONFromForm('.service-provider-' + serviceId);
+            service.active = $('#service-provide-check-' + serviceId).prop('checked');
+
+            manageProviderService(service);
         }
 
         function changeStyleActivePanel(active, serviceId) {
@@ -118,7 +123,7 @@
 
          function checkBoxProviderService_onChange() {
             let element = $(this);
-            let checked = element.prop('checked')
+             let checked = element.prop('checked');
 
             event.preventDefault();
             event.stopPropagation();
@@ -151,6 +156,27 @@
         function getproviderServicesSuccess(data) {
             $("#provider-service-container").html(data);
             applyMask();
+            $("body").delegate('.btnManageService', 'click', btnManageService_onClick);
+        }
+        
+        function manageProviderService(dados) {
+            let urlManageProviderService = $('#urlManageProviderService').val();
+
+            apiAjax('POST', 'json', 'application/json',
+                dados, urlManageProviderService,
+                null, manageProviderServiceError, resultApiComplete);
+        }
+
+        function manageProviderServiceError(jqXHR, textStatus, errorThrown) {
+            let status = jqXHR.status;
+            let messages = jqXHR.responseJSON.Warnings || [];
+
+            if (status >= 400 && status < 500) {
+                dialogWarningShowMessages(messages);
+            }
+            else {
+                dialogErrorShowMessages(messages);
+            }
         }
 
         function onProviderManageReady() {
@@ -159,8 +185,6 @@
             getproviderData();
 
             $("body").delegate('.service-provide-check', 'change', checkBoxProviderService_onChange);
-
-            return true;
         }
 
         function nextTab(elem) {

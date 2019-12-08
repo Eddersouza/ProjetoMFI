@@ -1,6 +1,8 @@
-﻿using MFI.Application.Interfaces;
+﻿using edrsys.Utils.extensions;
+using MFI.Application.Interfaces;
 using MFI.Application.ViewModels.Clients.Providers;
 using MFI.Domain.Contracts.Repositories;
+using MFI.Domain.Contracts.Repositories.Base;
 using MFI.Domain.Entities;
 using System;
 
@@ -8,11 +10,12 @@ namespace MFI.Application
 {
     public class ProviderServiceApp : ProviderServiceAppContract
     {
-        private readonly ProviderServiceRepositoryContract _providerServiceRepository;
+        private readonly UnityOfWorkContract _unityOfWork;
+
         public ProviderServiceApp(
-            ProviderServiceRepositoryContract providerServiceRepository)
+            UnityOfWorkContract unityOfWork)
         {
-            _providerServiceRepository = providerServiceRepository;
+            this._unityOfWork = unityOfWork;
         }
 
         public bool Add(
@@ -20,20 +23,22 @@ namespace MFI.Application
         {
             ProviderService providerService = new ProviderService()
             {
-                ClientId = new Guid(serviceProvider.ClientId),
+                ClientId =  Guid.Parse(serviceProvider.ClientId),
                 CreateDate = DateTime.Now,
                 CreatedByUserId = serviceProvider.ClientId,
-                MinimunAmount = serviceProvider.MinimalAmount,
+                MinimunAmount = serviceProvider.MinimalAmountText.ToDecimal(),
                 ServiceId = serviceProvider.ServiceId
             };
 
-            _providerServiceRepository.Create(providerService);
+            _unityOfWork.ProviderService.Create(providerService);
+            _unityOfWork.SaveChanges();
+
             return true;
         }
 
         public bool Remove(int id)
         {
-            _providerServiceRepository.Delete(new object[] { id });
+            _unityOfWork.ProviderService.Delete(new object[] { id });
             return true;
         }
     }

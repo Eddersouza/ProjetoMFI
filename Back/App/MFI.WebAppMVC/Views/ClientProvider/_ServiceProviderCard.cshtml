@@ -4,31 +4,36 @@
 
 @{
     string checkState = Model.Active ? "checked" : string.Empty;
+    string panelClass = Model.Active ? "panel-success" : "panel-default";
 }
 
 <div class="col-md-4 col-sm-12">
-    <div class="panel panel-default" id="service-provider-panel-@Model.ServiceId">
+    <div class="panel @panelClass" id="service-provider-panel-@Model.ServiceId">
         <div class="panel-heading">
             <label class="panel-title">
-                <input class="service-provide-check service-provider-@Model.ServiceId" data-service-id="@Model.ServiceId" name="name" type="checkbox" @checkState />&nbsp;&nbsp;@Model.Name
-            </label>
-        </div>
-        <div class="panel-body">
-            <input class="service-provider-@Model.ServiceId" name="clientId" type="hidden" value="@Model.ClientId" />
-            <p>
-                @Model.Description
-            </p>
-        </div>
-        <div class="panel-footer">
-            <div class="input-group">
-                <span class="input-group-addon">Preço inicial</span>
-                <input class="form-control miniumAmountInput service-provider-@Model.ServiceId" name="minimalAmountText" type="text" value="@Model.MinimalAmountText" />
-                <span class="input-group-btn">
-                    <button class="btn btn-block btn-success btnManageService" data-service-id="@Model.ServiceId" type="button">
-                        <i class="fas fa-save"></i>
-                    </button>
-                </span>
+                <input class="service-provide-check service-provider-@Model.ServiceId"
+                       data-service-id="@Model.ServiceId"
+                       id="service-provide-check-@Model.ServiceId" type="checkbox"
+                       @checkState />&nbsp;&nbsp;@Model.Name
+                </label>
+            </div>
+            <div class="panel-body">
+                <input class="service-provider-@Model.ServiceId" name="clientId" type="hidden" value="@Model.ClientId" />
+                <input class="service-provider-@Model.ServiceId" name="serviceId" type="hidden" value="@Model.ServiceId" />
+                <p>
+                    @Model.Description
+                </p>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <span class="input-group-addon">Preço inicial</span>
+                    <input class="form-control miniumAmountInput service-provider-@Model.ServiceId" name="minimalAmountText" type="text" value="@Model.MinimalAmountText" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-block btn-success btnManageService" data-service-id="@Model.ServiceId" type="button">
+                            <i class="fas fa-save"></i>
+                        </button>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
-</div>

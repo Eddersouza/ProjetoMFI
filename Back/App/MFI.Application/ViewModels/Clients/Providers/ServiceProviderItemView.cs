@@ -9,11 +9,13 @@
         public ServiceProviderItemView(
             string description,
             string name,
-            int serviceId)
+            int serviceId,
+            string clientId)
         {
             Description = description;
             Name = name;
             ServiceId = serviceId;
+            ClientId = clientId;
         }
 
         public bool Active { get; set; }
