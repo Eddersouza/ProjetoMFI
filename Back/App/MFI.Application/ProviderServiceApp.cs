@@ -23,7 +23,7 @@ namespace MFI.Application
         {
             ProviderService providerService = new ProviderService()
             {
-                ClientId =  Guid.Parse(serviceProvider.ClientId),
+                ClientId = Guid.Parse(serviceProvider.ClientId),
                 CreateDate = DateTime.Now,
                 CreatedByUserId = serviceProvider.ClientId,
                 MinimunAmount = serviceProvider.MinimalAmountText.ToDecimal(),
@@ -36,9 +36,14 @@ namespace MFI.Application
             return true;
         }
 
-        public bool Remove(int id)
+        public bool Remove(
+            int serviceId, 
+            string providerId)
         {
-            _unityOfWork.ProviderService.Delete(new object[] { id });
+            Guid clientId = Guid.Parse(providerId);
+
+            _unityOfWork.ProviderService.Delete(new object[] { clientId, serviceId });
+            _unityOfWork.SaveChanges();
             return true;
         }
     }

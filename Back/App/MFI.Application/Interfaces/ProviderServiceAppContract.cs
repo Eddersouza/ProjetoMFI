@@ -7,6 +7,8 @@ namespace MFI.Application.Interfaces
         bool Add(
             ServiceProviderItemView serviceProvider);
 
-        bool Remove(int id);
+        bool Remove(
+            int serviceId,
+            string providerId);
     }
 }

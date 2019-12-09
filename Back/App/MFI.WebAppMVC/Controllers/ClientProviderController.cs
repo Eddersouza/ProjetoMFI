@@ -113,20 +113,35 @@ namespace MFI.WebAppMVC.Controllers
             MFIResultContract result = new MFIResult();
             try
             {
-                bool add = _providerServiceApp.Add(service);
 
-                if (!add)
+                if (service.Active)
                 {
-                    result.AddWarning("Erro ao alterar Serviço.");
-                    Response.StatusCode = 400;
+                    bool add = _providerServiceApp.Add(service);
 
-                    return Json(result);
+                    if (!add)
+                    {
+                        result.AddWarning("Erro ao alterar Serviço.");
+                        Response.StatusCode = 400;
+
+                        return Json(result);
+                    }
                 }
+                else
+                {
+                    bool remove = _providerServiceApp.Remove(service.ServiceId, service.ClientId);
 
+                    if (!remove)
+                    {
+                        result.AddWarning("Erro ao alterar Serviço.");
+                        Response.StatusCode = 400;
+
+                        return Json(result);
+                    }
+                }
 
                 return Json(result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.AddWarning("Ocorreu um erro ao executar a ação.");
                 result.AddWarning("Tente novamente ou entre em contato com o administrador.");

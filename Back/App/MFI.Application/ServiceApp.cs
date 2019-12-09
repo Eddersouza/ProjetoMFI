@@ -22,12 +22,12 @@ namespace MFI.Application
         {
             ServiceProviderListView serviceProvidersList = new ServiceProviderListView();
             List<ServiceProviderItemView> serviceProviders = new List<ServiceProviderItemView>();
-            Guid serviceId = Guid.Parse(providerId);
+            Guid clientId = Guid.Parse(providerId);
 
             IEnumerable<Service> services = _unityOfWork.Service.Get();
             IEnumerable<ProviderService> providerServices =
                 _unityOfWork.ProviderService
-                .Get(providerService => providerService.ClientId == serviceId).ToList();
+                .Get(providerService => providerService.ClientId == clientId).ToList();
 
             string createdBy = string.Empty;
 
