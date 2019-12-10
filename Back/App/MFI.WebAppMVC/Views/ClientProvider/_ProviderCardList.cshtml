@@ -16,6 +16,15 @@
             </div>
             <div class="panel-body">
                 <p>
+                    @foreach (var service in card.services)
+                    {
+                        <button type="button" class="btn btn-primary btn-sm">
+                            @service.Name <span class="badge badge-light">@service.MinimalAmountText</span>
+                            <span class="sr-only">unread messages</span>
+                        </button>
+                    }
+                </p>
+                <p>
                     @card.Description
                 </p>
             </div>

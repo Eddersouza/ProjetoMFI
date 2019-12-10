@@ -18,6 +18,21 @@
             ClientId = clientId;
         }
 
+        public ServiceProviderItemView(
+            string clientId,
+            int serviceId,
+            string name,
+            string description,
+            decimal minimalAmount) : this(
+                description,
+                name,
+                serviceId,
+                clientId)
+        {
+            MinimalAmount = minimalAmount;
+            MinimalAmountText = minimalAmount.ToString("N2");
+        }
+
         public bool Active { get; set; }
         public string ClientId { get; set; }
         public string Description { get; set; }
