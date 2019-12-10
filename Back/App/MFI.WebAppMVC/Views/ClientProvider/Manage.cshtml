@@ -100,6 +100,7 @@
         function btnManageService_onClick() {
             event.preventDefault();
             event.stopPropagation();
+            blockPage(true);
 
             let serviceId = $(this).data('service-id');
             let service = getObjectJSONFromForm('.service-provider-' + serviceId);
@@ -158,13 +159,22 @@
             applyMask();
             $("body").delegate('.btnManageService', 'click', btnManageService_onClick);
         }
-        
+
         function manageProviderService(dados) {
             let urlManageProviderService = $('#urlManageProviderService').val();
 
             apiAjax('POST', 'json', 'application/json',
                 dados, urlManageProviderService,
-                null, manageProviderServiceError, resultApiComplete);
+                manageProviderServiceSucess, manageProviderServiceError, resultApiComplete);
+        }
+
+        function manageProviderServiceSucess() {
+            let messages = [];
+
+            messages.push('Serviços alterado com Sucesso.');
+
+            dialogSuccessShowMessages(messages);
+
         }
 
         function manageProviderServiceError(jqXHR, textStatus, errorThrown) {
